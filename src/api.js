@@ -18,5 +18,15 @@ export const getArticles = (topic, author, sort_by) => {
             .catch(err => console.log(err))
     )
 }
+export const getSingleArticle = (topic, author, sort_by) => {
+    return (
+        request
+            .get('/articles/:article_id')
+            .then(({ data }) => {
+                return data.articles
+            })
+            .catch(err => console.log(err))
+    )
+}
 
 // export default { getArticles }

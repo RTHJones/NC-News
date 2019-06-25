@@ -9,15 +9,20 @@ class Articles extends Component {
         let { articles } = this.state
         return (
             <div>
-                <h4>articles go here</h4>
-                {articles && <h3> title: {articles[0].title}<br />
-                    author: {articles[0].author}<br />
-                    id: {articles[0].article_id}<br />
-                    topic: {articles[0].topic}<br />
-                    votes:  {articles[0].votes}<br />
-                    comment count:  {articles[0].comment_count}<br />
-                    created at: {articles[0].created_at}</h3>}
-
+                {articles && <div>
+                    {articles.map(article => {
+                        return <div>
+                            title: {article.title}<br />
+                            author: {article.author}<br />
+                            id: {article.article_id}<br />
+                            topic: {article.topic}<br />
+                            votes:  {article.votes}<br />
+                            comment count:  {article.comment_count}<br />
+                            created at: {article.created_at}<br />
+                        </div>
+                    })}
+                </div>
+                }
             </div>
         );
     }
