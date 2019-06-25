@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const request = axios.create({ baseURL: 'https://robins-nc-news.herokuapp.com/api' })
 
-export const getArticles = (topic, author, sort_by) => {
+export const fetchArticles = (topic, author, sort_by) => {
     return (
         request
             .get('/articles', {
@@ -18,7 +18,7 @@ export const getArticles = (topic, author, sort_by) => {
             .catch(err => console.log(err))
     )
 }
-export const getSingleArticle = (id) => {
+export const fetchSingleArticle = (id) => {
     return (
         request
             .get(`/articles/${id}`)
@@ -28,7 +28,7 @@ export const getSingleArticle = (id) => {
             .catch(err => console.log(err))
     )
 }
-export const getComments = (id) => {
+export const fetchComments = (id) => {
     return (
         request
             .get(`/articles/${id}/comments`)
@@ -40,7 +40,7 @@ export const getComments = (id) => {
     )
 }
 
-export const getTopics = () => {
+export const fetchTopics = () => {
     return (
         request
             .get(`/topics/`)
@@ -50,7 +50,7 @@ export const getTopics = () => {
             .catch(err => console.log(err))
     )
 }
-export const getAuthors = () => {
+export const fetchAuthors = () => {
     return (
         request
             .get(`/users?limit=100`)

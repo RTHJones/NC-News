@@ -27,7 +27,7 @@ class Article extends Component {
     componentDidMount() {
         let { id } = this.props
         this.setState({ isloading: true })
-        api.getSingleArticle(id)
+        api.fetchSingleArticle(id)
             .then(article => {
                 this.setState({ article: article, isLoading: false })
             })

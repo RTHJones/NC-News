@@ -31,7 +31,12 @@
     transform: rotate(360deg);
   }
 }
-
+.articleBar {
+    background-color: #a49480;
+    border-color: grey;
+    border-style: solid;
+    border-width: 1px 2px 1px 2px;
+}
 .articleCard {
 border-top: 1px;
 border-left: 2px;
@@ -43,8 +48,20 @@ border-radius: 1px;
 background-color: beige;
 }
 .articleTile {
-  border: solid grey 3px;
+  border: solid grey;
   background-color: beige;
+  border-width: 1px 2px 1px 2px;
+}
+.bubbleCard {
+  background-color:beige;
+  border-color: grey;
+  border-style: solid;
+  border-width: 1px 2px 1px 2px;
+}
+.commentCard {
+  border: solid grey;
+  background-color: beige;
+  border-width: 1px 2px 1px 2px;
 }
 h1{
   font-family: Lobster, monospace;
@@ -76,8 +93,18 @@ img {
   border-style: solid;
   border-width: 2px 2px 1px 2px;
 }
-
-.speechbubble {
+.pageBar {
+  background-color: #a49480;
+  border-color: grey;
+  border-style: solid;
+  border-width: 1px 2px 2px 2px;
+}
+.speechBubble {
   max-width: 10%;
   height: auto;
+}
+.topicCard {
+  border: solid grey;
+  background-color: beige;
+  border-width: 1px 2px 1px 2px;
 }

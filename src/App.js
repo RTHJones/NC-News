@@ -6,6 +6,7 @@ import Home from './Home'
 import AccountManager from './AccountManager'
 import Articles from './Articles'
 import Article from './Article'
+import Topics from './Topics'
 import { Router, Link } from '@reach/router'
 
 
@@ -28,6 +29,7 @@ class App extends Component {
           <AccountManager path="/accounts" />
           <Articles path="/articles" />
           <Article path="/articles/:id" />
+          <Topics path="/topics" />
         </Router>
 
       </div>

@@ -10,8 +10,8 @@ class CommentsList extends Component {
         let { comments, showComments } = this.state
         return (
             <div>
-                <div onClick={this.toggleComments}>
-                    <img className="speechbubble" alt="a speech bubble" src="https://www.stickpng.com/assets/images/58adf251e612507e27bd3c32.png" />
+                <div className="bubbleCard" onClick={this.toggleComments}>
+                    <img className="speechBubble" alt="a speech bubble" src="https://www.stickpng.com/assets/images/58adf251e612507e27bd3c32.png" />
                     <p>Click here to toggle comments</p>
                 </div>
                 {showComments && <div>
@@ -32,7 +32,7 @@ class CommentsList extends Component {
     }
     toggleComments = () => {
         let { id } = this.props;
-        api.getComments(id)
+        api.fetchComments(id)
             .then(comments => {
                 this.setState({
                     showComments: (this.state.showComments ? false : true),
