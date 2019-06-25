@@ -27,7 +27,7 @@ class App extends Component {
           <Home path="/" />
           <AccountManager path="/accounts" />
           <Articles path="/articles" />
-          <Article path="/article/:id" />
+          <Article path="/articles/:id" />
         </Router>
 
       </div>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as api from './api'
+import { Link } from '@reach/router'
 
 class Articles extends Component {
     state = {
@@ -9,17 +10,22 @@ class Articles extends Component {
         let { articles } = this.state
         return (
             <div>
-                {articles && <div>
+                {articles && <div >
                     {articles.map(article => {
-                        return <div>
-                            title: {article.title}<br />
-                            author: {article.author}<br />
-                            id: {article.article_id}<br />
-                            topic: {article.topic}<br />
-                            votes:  {article.votes}<br />
-                            comment count:  {article.comment_count}<br />
-                            created at: {article.created_at}<br />
-                        </div>
+                        return (
+
+                            <div className="articleCard" key={article.title}>
+                                <Link to={`/articles/${article.article_id}`}>
+                                    <h3>Article {article.article_id}: {article.title}</h3></Link><br />
+                                author: {article.author}<br />
+                                id: {article.article_id}<br />
+                                topic: {article.topic}<br />
+                                votes:  {article.votes}<br />
+                                comment count:  {article.comment_count}<br />
+                                created at: {article.created_at}<br />
+                                <p>   </p><br />
+                            </div>
+                        )
                     })}
                 </div>
                 }
@@ -30,7 +36,6 @@ class Articles extends Component {
 
         api.getArticles()
             .then(articles => {
-                console.log(articles)
                 this.setState({ articles: articles })
             })
 

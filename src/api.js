@@ -18,12 +18,44 @@ export const getArticles = (topic, author, sort_by) => {
             .catch(err => console.log(err))
     )
 }
-export const getSingleArticle = (topic, author, sort_by) => {
+export const getSingleArticle = (id) => {
     return (
         request
-            .get('/articles/:article_id')
+            .get(`/articles/${id}`)
             .then(({ data }) => {
-                return data.articles
+                return data.article
+            })
+            .catch(err => console.log(err))
+    )
+}
+export const getComments = (id) => {
+    return (
+        request
+            .get(`/articles/${id}/comments`)
+            .then(({ data }) => {
+                console.log(data.comments)
+                return data.comments
+            })
+            .catch(err => console.log(err))
+    )
+}
+
+export const getTopics = () => {
+    return (
+        request
+            .get(`/topics/`)
+            .then(({ data }) => {
+                return data.topics
+            })
+            .catch(err => console.log(err))
+    )
+}
+export const getAuthors = () => {
+    return (
+        request
+            .get(`/users?limit=100`)
+            .then(({ data }) => {
+                return data.users
             })
             .catch(err => console.log(err))
     )

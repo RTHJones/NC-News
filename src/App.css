@@ -31,3 +31,53 @@
     transform: rotate(360deg);
   }
 }
+
+.articleCard {
+border-top: 1px;
+border-left: 2px;
+border-bottom: 1px;
+border-right: 2px;
+border-color: grey;
+border-style: solid;
+border-radius: 1px;
+background-color: beige;
+}
+.articleTile {
+  border: solid grey 3px;
+  background-color: beige;
+}
+h1{
+  font-family: Lobster, monospace;
+  font-size: 70px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  background-color: beige;
+  background: -webkit-linear-gradient(#42addb, #002d3f);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-decoration: none;
+  border: grey 5px solid;
+  border-radius: 10px;
+
+}
+h1:link {
+text-decoration: none
+}
+
+img {
+  margin-top: 30px;
+  max-width: 100%;
+  height: auto;
+}
+
+.navbar {
+  background-color: #a49480;
+  border-color: grey;
+  border-style: solid;
+  border-width: 2px 2px 1px 2px;
+}
+
+.speechbubble {
+  max-width: 10%;
+  height: auto;
+}

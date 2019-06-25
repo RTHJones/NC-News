@@ -1,9 +1,12 @@
 import React from 'react';
+import { Link } from '@reach/router'
 
 const Home = () => {
     return (
-        <div>
-            homepage
+        <div >
+            <Link to='/articles'>
+                <img src="https://www.kshs.org/research/collections/documents/newspapers/newspapers2.jpg" alt="A clickable set of newspapers" />
+            </Link>
         </div>
     );
 };
