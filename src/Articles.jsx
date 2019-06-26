@@ -10,7 +10,8 @@ class Articles extends Component {
         authors: null,
         author: null,
         sort_by: null,
-        page: 1
+        page: 1,
+        checked: false
     }
     render() {
         let { articles, topics, topic, authors, page } = this.state;
@@ -34,13 +35,13 @@ class Articles extends Component {
                         }
                     </select> Sort Articles By:
                     <select onChange={(event) => this.handleChange(event, 'sort_by')} defaultValue={null}>
-                        {/* <option selected value={''}>Sort By</option> */}
                         <option value="article_id">Article ID</option>
                         <option value="author">Author</option>
                         <option selected={true} value="">Age</option>
                         <option value="votes">Vote Count</option>
                         <option value="comment_count">Comment Count</option>
                     </select>
+                    {' '}{' '}Reverse Sort Order:<input type="checkbox" onChange={this.handleCheck}></input>
                 </div>
                 <div>
                     {articles && <div >
@@ -82,19 +83,24 @@ class Articles extends Component {
     }
     componentDidUpdate(prevProps, prevState) {
 
-        if (prevProps !== this.props || prevState.author !== this.state.author || prevState.topic !== this.state.topic || prevState.sort_by !== this.state.sort_by) {
+        if (prevProps !== this.props || prevState.author !== this.state.author || prevState.topic !== this.state.topic || prevState.sort_by !== this.state.sort_by || prevState.checked !== this.state.checked) {
             this.getArticles()
         }
     }
     getArticles = () => {
-        let { author, sort_by, topic } = this.state;
-        api.fetchArticles(topic, author, sort_by)
+        let { author, sort_by, topic, checked } = this.state;
+        let order = (checked ? 'asc' : 'desc')
+        console.log(order)
+        api.fetchArticles(topic, author, sort_by, order)
             .then(articles => {
                 this.setState({ articles: articles })
             })
     }
     handleChange = (event, input) => {
         this.setState({ [input]: event.target.value })
+    }
+    handleCheck = () => {
+        this.setState({ checked: (this.state.checked ? false : true) })
     }
     changePage = (prevState, input) => {
         let { page } = this.state

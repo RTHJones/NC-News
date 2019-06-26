@@ -3,25 +3,22 @@ import * as api from './api';
 
 class Voter extends Component {
     state = {
-        itemType: 'article_id',
-        id: null,
-        votes: null,
         voteChange: 0
     }
     render() {
-        let { itemType, id, votes, voteChange } = this.state;
+        let { voteChange } = this.state;
+        let { votes, id } = this.props;
         return (
             <div>
-                <button onClick={() => this.handleVote(id, 1)}>Vote Up</button><br />
+                <button disabled={voteChange > 0} onClick={() => this.handleVote(id, 1)}>Vote Up</button>
                 Votes: {votes + voteChange}
-                <button onClick={() => this.handleVote(id, -1)}>Vote Down</button><br />
+                <button disabled={voteChange < 0} onClick={() => this.handleVote(id, -1)}>Vote Down</button><br />
             </div>
         );
     }
     handleVote = (id, increment) => {
 
         this.setState({ voteChange: this.state.voteChange + increment })
-        console.log('voting!')
         api.vote(id, increment)
             .then(res => {
                 console.log(res)

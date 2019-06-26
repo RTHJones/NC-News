@@ -2,14 +2,15 @@ import axios from 'axios'
 
 const request = axios.create({ baseURL: 'https://robins-nc-news.herokuapp.com/api' })
 
-export const fetchArticles = (topic, author, sort_by) => {
+export const fetchArticles = (topic, author, sort_by, order) => {
     return (
         request
             .get('/articles', {
                 params: {
                     topic: topic,
                     author: author,
-                    sort_by: sort_by
+                    sort_by: sort_by,
+                    order: order
                 }
             })
             .then(({ data }) => {
@@ -65,7 +66,8 @@ export const vote = (id, increment) => {
         request
             .patch(`/articles/${id}`, { inc_votes: increment })
             .then(({ data }) => {
-                return data.article
+                console.log(data)
+                return data
             })
             .catch(err => console.log(err))
     )
