@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as api from './api'
+import Voter from './Voter'
 
 class CommentsList extends Component {
     state = {
@@ -18,9 +19,11 @@ class CommentsList extends Component {
                     {comments.map(comment => {
                         return (
                             <div key={comment.comment_id} className="commentCard">
-                                #{comment.comment_id}{` `}By: {comment.author}{` `}Votes: {comment.votes}<br />
+                                <p></p>
+                                #{comment.comment_id}{` `}By: {comment.author}{` `}<br />
                                 {comment.body}<br />
                                 Created At: {comment.created_at}<br />
+                                <Voter comment={true} votes={comment.votes} id={comment.comment_id} />
                                 <p></p>
                             </div>
                         )

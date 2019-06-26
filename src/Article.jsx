@@ -20,7 +20,7 @@ class Article extends Component {
                     Body: {article.body}<br />
                     Comment Count: {article.comment_count}<br />
                     Created At: {article.created_at}<br />
-                    <Voter votes={article.votes} id={article.article_id} />
+                    <Voter comment={false} votes={article.votes} id={article.article_id} />
                 </div>}
                 <CommentsList id={this.props.id} />
             </div >
