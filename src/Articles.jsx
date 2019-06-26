@@ -86,7 +86,6 @@ class Articles extends Component {
             this.getArticles()
         }
     }
-
     getArticles = () => {
         let { author, sort_by, topic } = this.state;
         api.fetchArticles(topic, author, sort_by)
@@ -96,7 +95,6 @@ class Articles extends Component {
     }
     handleChange = (event, input) => {
         this.setState({ [input]: event.target.value })
-        console.log('change places!')
     }
     changePage = (prevState, input) => {
         let { page } = this.state

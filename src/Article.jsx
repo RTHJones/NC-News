@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import * as api from './api';
 import CommentsList from './CommentsList'
+import Voter from './Voter'
 
 class Article extends Component {
     state = {
@@ -19,6 +20,7 @@ class Article extends Component {
                     Body: {article.body}<br />
                     Comment Count: {article.comment_count}<br />
                     Created At: {article.created_at}<br />
+                    <Voter id={article.article_id} />
                 </div>}
                 <CommentsList id={this.props.id} />
             </div >

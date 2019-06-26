@@ -60,6 +60,15 @@ export const fetchAuthors = () => {
             .catch(err => console.log(err))
     )
 }
-
+export const vote = (id, increment) => {
+    return (
+        request
+            .patch(`/articles/${id}`, { inc_votes: increment })
+            .then(({ data }) => {
+                return data.article
+            })
+            .catch(err => console.log(err))
+    )
+}
 
 // export default { getArticles }
