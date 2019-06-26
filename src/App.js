@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
-import Header from './Header'
-import Navbar from './Navbar'
-import Home from './Home'
-import AccountManager from './AccountManager'
-import Articles from './Articles'
-import Article from './Article'
-import Topics from './Topics'
-import { Router, Link } from '@reach/router'
+import Header from './Header';
+import Navbar from './Navbar';
+import Home from './Home';
+import AccountManager from './AccountManager';
+import Articles from './Articles';
+import Article from './Article';
+import Topics from './Topics';
+import Users from './Users';
+import { Router, Link } from '@reach/router';
 
 
 class App extends Component {
@@ -27,6 +28,9 @@ class App extends Component {
         <Router>
           <Home path="/" />
           <AccountManager path="/accounts" />
+          <Router>
+            <Users path="/accounts/users" />
+          </Router>
           <Articles path="/articles" />
           <Article path="/articles/:id" />
           <Topics path="/topics" />

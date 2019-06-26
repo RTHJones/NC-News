@@ -10,7 +10,7 @@ class Articles extends Component {
         authors: null,
         author: null,
         sort_by: null,
-        page: '1'
+        page: 1
     }
     render() {
         let { articles, topic, topics, authors, page } = this.state;
@@ -18,13 +18,13 @@ class Articles extends Component {
             <div>
                 <div className="articleBar">Filter Articles By:
                 <select onChange={(event) => this.handleChange(event, 'topic')} defaultValue={topic}>
-                        <option value={null}>Topic</option>
+                        <option selected value={null}>Topic</option>
                         {topics && topics.map(topic => {
                             return <option value={topic.slug}>{topic.slug}</option>
                         })}
                     </select>
                     <select onChange={(event) => this.handleChange(event, 'author')} defaultValue='Author'>
-                        <option value={null}>Author</option>
+                        <option selected value={null}>Author</option>
                         {authors &&
                             authors.map(author => {
                                 return <option value={author.username}>{author.username}</option>
@@ -32,7 +32,7 @@ class Articles extends Component {
                         }
                     </select>
                     <select onChange={(event) => this.handleChange(event, 'sort_by')} defaultValue={null}>
-                        <option value={null}>Sort By</option>
+                        <option selected value={null}>Sort By</option>
                         <option value="article_id">Article ID</option>
                         <option value="author">Author</option>
                         <option value="created_at">Age</option>
@@ -93,6 +93,14 @@ class Articles extends Component {
     handleChange = (event, input) => {
         this.setState({ [input]: event.target.value })
         console.log('change places!')
+    }
+    changePage = (prevState, input) => {
+        let { page } = this.state
+        if (page + input <= 0) { alert('Already on first page') }
+        else if (page + input > 'MAXPAGE?!?!?!') { alert('Already on last page') }
+        else this.setState(prevState => {
+            return ({ page: prevState.page + input })
+        })
     }
 };
 
