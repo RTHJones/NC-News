@@ -58,7 +58,7 @@ class Users extends Component {
                                     <p></p>
                                     Username: {user.username}<br />
                                     Name: {user.name}<br />
-                                    <div>{this.setURL(user)} </div><br />
+                                    <div>{this.setUrl(user)} </div><br />
                                     <p></p>
                                 </div>
                             </Link>
@@ -78,7 +78,7 @@ class Users extends Component {
             })
             .catch(err => console.log(err))
     }
-    setURL = (data) => {
+    setUrl = (data) => {
         switch (data.username) {
             case 'grumpy19': return <img className="userImg" alt="avatar icon" src={this.state.grumpy} />;
             case 'weegembump': return <img className="userImg" alt="avatar icon" src={this.state.bump} />;

@@ -8,7 +8,7 @@ class Articles extends Component {
         topics: null,
         topic: this.props.location.state.topic || null,
         authors: null,
-        author: null,
+        author: this.props.location.state.author || null,
         sort_by: null,
         page: 1,
         checked: false
@@ -20,24 +20,24 @@ class Articles extends Component {
                 <div className="articleBar">Filter Articles By:
                 <select onChange={(event) => {
                         this.handleChange(event, 'topic')
-                    }} defaultValue={null}>
+                    }} defaultValue={''}>
                         <option value={''}>Topic</option>
                         {topics && topics.map(topic => {
-                            return <option selected={this.state.topic === topic.slug} value={topic.slug}>{topic.slug}</option>
+                            return <option selected={this.state.topic === topic.slug} value={topic.slug}>{topic.slug.charAt(0).toUpperCase() + topic.slug.slice(1)}</option>
                         })}
                     </select>
-                    <select onChange={(event) => this.handleChange(event, 'author')} defaultValue='null'>
-                        <option selected value={''}>Author</option>
+                    <select onChange={(event) => this.handleChange(event, 'author')} defaultValue={''}>
+                        <option value={''}>Author</option>
                         {authors &&
                             authors.map(author => {
-                                return <option value={author.username}>{author.username}</option>
+                                return <option selected={this.state.author === author.username} value={author.username}>{author.username}</option>
                             })
                         }
                     </select> Sort Articles By:
                     <select onChange={(event) => this.handleChange(event, 'sort_by')} defaultValue={null}>
+                        <option selected={true} value="">Age</option>
                         <option value="article_id">Article ID</option>
                         <option value="author">Author</option>
-                        <option selected={true} value="">Age</option>
                         <option value="votes">Vote Count</option>
                         <option value="comment_count">Comment Count</option>
                     </select>

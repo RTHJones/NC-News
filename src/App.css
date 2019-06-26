@@ -92,6 +92,7 @@ h3 {
   margin-top: 10px;
   margin-bottom: 0px;
   padding-bottom: 0px;
+  font-size: 20px;
 }
 img {
   margin-top: 30px;
@@ -119,6 +120,10 @@ img {
   border: solid grey;
   background-color: beige;
   border-width: 1px 2px 1px 2px;
+}
+.topicImg {
+  max-width: 200px;
+  max-height: auto;
 }
 .userBar {
   background-color: #a49480;
