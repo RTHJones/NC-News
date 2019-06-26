@@ -32,12 +32,12 @@ class Articles extends Component {
                                 return <option value={author.username}>{author.username}</option>
                             })
                         }
-                    </select>
+                    </select> Sort Articles By:
                     <select onChange={(event) => this.handleChange(event, 'sort_by')} defaultValue={null}>
-                        <option selected value={''}>Sort By</option>
+                        {/* <option selected value={''}>Sort By</option> */}
                         <option value="article_id">Article ID</option>
                         <option value="author">Author</option>
-                        <option value="created_at">Age</option>
+                        <option selected={true} value="">Age</option>
                         <option value="votes">Vote Count</option>
                         <option value="comment_count">Comment Count</option>
                     </select>
