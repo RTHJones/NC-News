@@ -65,7 +65,7 @@ background-color: beige;
 }
 h1{
   font-family: Lobster, monospace;
-  font-size: 70px;
+  font-size: 90px;
   margin-bottom: 0px;
   margin-top: 0px;
   background-color: beige;
@@ -81,8 +81,12 @@ h1:link {
 text-decoration: none
 }
 h2 {
-  font-size: 40px;
+  font-size: 60px;
   font-family: Lobster, monospace;
+  background: -webkit-linear-gradient(#8b8f91, #1a313a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-decoration: none;
 }
 h3 {
   margin-top: 10px;

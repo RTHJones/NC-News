@@ -18,7 +18,7 @@ class Navbar extends Component {
                     <button>Topics</button>
                 </Link>
                 <Link to="/articles" state={
-                    { topic: null }}>
+                    { topic: '' }}>
                     <button>Articles</button>
                 </Link>
                 ____logged in as: {this.props.username}____<br />

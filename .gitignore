@@ -17,10 +17,8 @@
 .env.development.local
 .env.test.local
 .env.production.local
-/issues
-/issues.md 
-issues
-issues.md
+
+tickets.md
 
 
 npm-debug.log*

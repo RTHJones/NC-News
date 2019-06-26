@@ -13,18 +13,20 @@ class Articles extends Component {
         page: 1
     }
     render() {
-        let { articles, topic, topics, authors, page } = this.state;
+        let { articles, topics, topic, authors, page } = this.state;
         return (
             <div>
                 <div className="articleBar">Filter Articles By:
-                <select onChange={(event) => this.handleChange(event, 'topic')} defaultValue={topic}>
-                        <option selected value={null}>Topic</option>
+                <select onChange={(event) => {
+                        this.handleChange(event, 'topic')
+                    }} defaultValue={null}>
+                        <option value={''}>Topic</option>
                         {topics && topics.map(topic => {
-                            return <option value={topic.slug}>{topic.slug}</option>
+                            return <option selected={this.state.topic === topic.slug} value={topic.slug}>{topic.slug}</option>
                         })}
                     </select>
-                    <select onChange={(event) => this.handleChange(event, 'author')} defaultValue='Author'>
-                        <option selected value={null}>Author</option>
+                    <select onChange={(event) => this.handleChange(event, 'author')} defaultValue='null'>
+                        <option selected value={''}>Author</option>
                         {authors &&
                             authors.map(author => {
                                 return <option value={author.username}>{author.username}</option>
@@ -32,7 +34,7 @@ class Articles extends Component {
                         }
                     </select>
                     <select onChange={(event) => this.handleChange(event, 'sort_by')} defaultValue={null}>
-                        <option selected value={null}>Sort By</option>
+                        <option selected value={''}>Sort By</option>
                         <option value="article_id">Article ID</option>
                         <option value="author">Author</option>
                         <option value="created_at">Age</option>
@@ -48,7 +50,6 @@ class Articles extends Component {
                                     <Link to={`/articles/${article.article_id}`}>
                                         <h3>Article {article.article_id}: {article.title}</h3></Link><br />
                                     author: {article.author}<br />
-                                    id: {article.article_id}<br />
                                     topic: {article.topic}<br />
                                     votes:  {article.votes}<br />
                                     comment count:  {article.comment_count}<br />
@@ -63,7 +64,7 @@ class Articles extends Component {
                 <div className="pageBar">
                     Page: {page}
                 </div>
-            </div>
+            </div >
         );
     }
     componentDidMount = () => {
@@ -79,12 +80,15 @@ class Articles extends Component {
             .catch(err => console.log(err))
         this.getArticles()
     }
-    componentDidUpdate() {
-        this.getArticles()
+    componentDidUpdate(prevProps, prevState) {
+
+        if (prevProps !== this.props || prevState.author !== this.state.author || prevState.topic !== this.state.topic || prevState.sort_by !== this.state.sort_by) {
+            this.getArticles()
+        }
     }
 
     getArticles = () => {
-        let { topic, author, sort_by } = this.state
+        let { author, sort_by, topic } = this.state;
         api.fetchArticles(topic, author, sort_by)
             .then(articles => {
                 this.setState({ articles: articles })

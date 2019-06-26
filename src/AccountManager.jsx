@@ -6,8 +6,7 @@ class AccountManager extends Component {
     state = {
         username: null,
         name: null,
-        avatarURL: null,
-        authors: []
+        avatarURL: null
     }
     render() {
         return (
@@ -35,7 +34,7 @@ class AccountManager extends Component {
                 </form>
                 <br />
                 <br />
-                <Link to='/users'>
+                <Link to='/accounts/users'>
                     <button onClick={this.getUsers}>Show All Users</button>
                 </Link>
                 <br />
@@ -48,13 +47,6 @@ class AccountManager extends Component {
     }
     handleSubmit = (event) => {
         event.preventDefault()
-    }
-    getUsers = () => {
-        api.fetchAuthors()
-            .then(authors => {
-                this.setState({ authors: authors })
-            })
-            .catch(err => console.log(err))
     }
 };
 

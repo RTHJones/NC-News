@@ -13,7 +13,7 @@ class Topics extends Component {
                 {topics && topics.map(topic => {
                     return (
                         <Link
-                            to="/articles"
+                            to={`/articles`}
                             state={
                                 { topic: topic.slug }
                             }>
