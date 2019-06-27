@@ -47,6 +47,16 @@ border-style: solid;
 border-radius: 1px;
 background-color: beige;
 }
+.articleForm {
+  border: grey 5px solid;
+  border-radius: 10px;
+  width: 50%;
+  margin-left:25%;
+}
+.articleFormComponent {
+  padding: 5px;
+  margin: 10px;
+}
 .articleTile {
   border: solid grey;
   background-color: beige;
@@ -101,12 +111,13 @@ h3 {
   padding-bottom: 0px;
   font-size: 20px;
 }
-img {
+.mainImg {
   margin-top: 30px;
-  max-width: 100%;
+  width: 99%;
   height: auto;
+  border: grey 5px solid;
+  border-radius: 10px;
 }
-
 .navbar {
   background-color: #a49480;
   border-color: grey;

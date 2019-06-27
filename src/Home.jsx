@@ -5,7 +5,7 @@ const Home = () => {
     return (
         <div >
             <Link to='/articles'>
-                <img src="https://www.kshs.org/research/collections/documents/newspapers/newspapers2.jpg" alt="A clickable set of newspapers" />
+                <img className="mainImg" src="https://www.kshs.org/research/collections/documents/newspapers/newspapers2.jpg" alt="A clickable set of newspapers" />
             </Link>
         </div>
     );

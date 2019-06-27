@@ -1,43 +1,44 @@
 import React, { Component } from 'react';
 import * as api from './api'
-import { Link } from '@reach/router'
-import Moment from 'react-moment';
+import { Link } from '@reach/router';
 import moment from 'moment';
 
 class Articles extends Component {
     state = {
         articles: null,
         topics: null,
-        topic: this.props.location.state.topic || null,
+        topic: this.props.location.state.topic || '',
         authors: null,
-        author: this.props.location.state.author || null,
+        author: this.props.location.state.author || '',
         sort_by: null,
         page: 1,
         checked: false
     }
     render() {
-        let { articles, topics, topic, authors, page } = this.state;
+        let { articles, topics, authors, page } = this.state;
         return (
             <div>
                 <div className="articleBar">Filter Articles By:
-                <select onChange={(event) => {
+                <select value={this.state.topic} onChange={(event) => {
                         this.handleChange(event, 'topic')
-                    }} defaultValue={''}>
-                        <option value={''}>Topic</option>
+                    }}>
+                        <option value='' >Topic</option>
                         {topics && topics.map(topic => {
-                            return <option selected={this.state.topic === topic.slug} value={topic.slug}>{topic.slug.charAt(0).toUpperCase() + topic.slug.slice(1)}</option>
+                            return <option key={topic.slug} value={topic.slug}>{topic.slug.charAt(0).toUpperCase() + topic.slug.slice(1)}</option>
                         })}
                     </select>
-                    <select onChange={(event) => this.handleChange(event, 'author')} defaultValue={''}>
-                        <option value={''}>Author</option>
+                    <select value={this.state.author} onChange={(event) => {
+                        this.handleChange(event, 'author')
+                    }}>
+                        <option value=''>Author</option>
                         {authors &&
                             authors.map(author => {
-                                return <option selected={this.state.author === author.username} value={author.username}>{author.username}</option>
+                                return <option key={author.username} value={author.username}>{author.username}</option>
                             })
                         }
                     </select> Sort Articles By:
                     <select onChange={(event) => this.handleChange(event, 'sort_by')} defaultValue={null}>
-                        <option selected={true} value="">Age</option>
+                        <option value="">Age</option>
                         <option value="article_id">Article ID</option>
                         <option value="author">Author</option>
                         <option value="votes">Vote Count</option>
@@ -84,19 +85,20 @@ class Articles extends Component {
         this.getArticles()
     }
     componentDidUpdate(prevProps, prevState) {
-        const props = prevProps !== this.props;
-        const author = prevState.author !== this.state.author;
-        const topic = prevState.topic !== this.state.topic;
-        const sort_by = prevState.sort_by !== this.state.sort_by;
-        const checked = prevState.checked !== this.state.checked;
-        if (props || author || topic || sort_by || checked) {
+        let { author, topic, sort_by, checked, page } = this.state;
+        const propsCheck = prevProps !== this.props;
+        const authorCheck = prevState.author !== author;
+        const topicCheck = prevState.topic !== topic;
+        const sort_byCheck = prevState.sort_by !== sort_by;
+        const checkedCheck = prevState.checked !== checked;
+        const pageCheck = prevState.page !== page;
+        if (propsCheck || authorCheck || topicCheck || sort_byCheck || checkedCheck || pageCheck) {
             this.getArticles()
         }
     }
     getArticles = () => {
         let { author, sort_by, topic, checked } = this.state;
         let order = (checked ? 'asc' : 'desc')
-        console.log(order)
         api.fetchArticles(topic, author, sort_by, order)
             .then(articles => {
                 this.setState({ articles: articles })

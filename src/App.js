@@ -8,6 +8,7 @@ import Articles from './Articles';
 import Article from './Article';
 import Topics from './Topics';
 import Users from './Users';
+import SubmitArticle from './SubmitArticle';
 import { Router, Link } from '@reach/router';
 
 
@@ -32,6 +33,7 @@ class App extends Component {
           <Articles path="/articles" />
           <Article path="/articles/:id" username={username} />
           <Topics path="/topics" />
+          <SubmitArticle path='/submitArticle' username={username} />
         </Router>
 
       </div>

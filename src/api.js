@@ -3,7 +3,7 @@ import axios from 'axios'
 const request = axios.create({ baseURL: 'https://robins-nc-news.herokuapp.com/api' })
 
 
-export const addArticle = (title, topic, username, body) => {
+export const postArticle = (title, topic, username, body) => {
     return (
         request
             .post(`/articles`, { title, topic, username, body })
@@ -13,7 +13,7 @@ export const addArticle = (title, topic, username, body) => {
             .catch(console.dir)
     )
 }
-export const addComment = (id, body, username) => {
+export const postComment = (id, body, username) => {
     return (
         request
             .post(`articles/${id}/comments`, { body: body, username: username })

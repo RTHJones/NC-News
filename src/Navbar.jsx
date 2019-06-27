@@ -21,6 +21,10 @@ class Navbar extends Component {
                     { topic: '' }}>
                     <button>Articles</button>
                 </Link>
+                <Link to="/submitArticle" state={
+                    { topic: '' }}>
+                    <button>Submit Article</button>
+                </Link>
                 ____logged in as: {this.props.username}____<br />
             </div>
         );

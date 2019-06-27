@@ -45,7 +45,7 @@ class CommentsList extends Component {
     }
     handleSubmit = (event) => {
         event.preventDefault();
-        api.addComment(this.props.id, this.state.userComment, this.props.username)
+        api.postComment(this.props.id, this.state.userComment, this.props.username)
             .then(() => api.fetchComments(this.props.id))
             .then((comments) => this.setState({ comments: comments, userComment: '', showComments: true }));
     }
