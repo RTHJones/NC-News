@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import * as api from './api';
 import CommentsList from './CommentsList'
 import Voter from './Voter'
-import Moment from 'react-moment';
 import moment from 'moment';
 
 class Article extends Component {

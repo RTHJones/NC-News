@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import * as api from './api'
 import Voter from './Voter'
-import Moment from 'react-moment';
 import moment from 'moment';
 
 class CommentsList extends Component {
@@ -14,10 +13,6 @@ class CommentsList extends Component {
         let { comments, showComments } = this.state
         return (
             <div>
-                <div className="bubbleCard" onClick={this.toggleComments}>
-                    <img className="speechBubble" alt="a speech bubble" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Comments_alt_font_awesome.svg/2000px-Comments_alt_font_awesome.svg.png" />
-                    <p>Click here to toggle comments</p>
-                </div>
                 <div className="commentForm" >
                     <form onSubmit={this.handleSubmit}>
                         <label> Add your comment:
@@ -26,8 +21,12 @@ class CommentsList extends Component {
                         <button>Submit Comment</button>
                     </form>
                 </div>
+                <div className="bubbleCard" onClick={this.toggleComments}>
+                    <img className="speechBubble" alt="a speech bubble" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Comments_alt_font_awesome.svg/2000px-Comments_alt_font_awesome.svg.png" />
+                    <p>Click here to toggle comments</p>
+                </div>
                 {showComments && <div>
-                    {comments.map(comment => {
+                    {comments && comments.map(comment => {
                         return (
                             <div key={comment.comment_id} className="commentCard">
                                 <p></p>
@@ -47,9 +46,8 @@ class CommentsList extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         api.addComment(this.props.id, this.state.userComment, this.props.username)
-        .then(this.setState({ userComment: '' }));
-
-
+            .then(() => api.fetchComments(this.props.id))
+            .then((comments) => this.setState({ comments: comments, userComment: '', showComments: true }));
     }
     handleChange = (event) => {
         this.setState({ userComment: event.target.value })
