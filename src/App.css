@@ -58,6 +58,13 @@ background-color: beige;
   border-style: solid;
   border-width: 1px 2px 1px 2px;
 }
+.commentForm {
+  background-color:beige;
+  border-color: grey;
+  border-style: solid;
+  border-width: 1px 2px 1px 2px;
+  margin: 0px
+}
 .commentCard {
   border: solid grey;
   background-color: beige;
@@ -113,8 +120,10 @@ img {
   border-width: 1px 2px 2px 2px;
 }
 .speechBubble {
-  max-width: 10%;
-  height: auto;
+max-width: 10%;
+max-height:10%;
+  padding: 0px;
+  margin: 0px;
 }
 .topicCard {
   border: solid grey;

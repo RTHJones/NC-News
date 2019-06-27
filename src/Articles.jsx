@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import * as api from './api'
 import { Link } from '@reach/router'
+import Moment from 'react-moment';
+import moment from 'moment';
 
 class Articles extends Component {
     state = {
@@ -50,11 +52,11 @@ class Articles extends Component {
                                 <div className="articleCard" key={article.title}>
                                     <Link to={`/articles/${article.article_id}`}>
                                         <h3>Article {article.article_id}: {article.title}</h3></Link><br />
-                                    author: {article.author}<br />
-                                    topic: {article.topic}<br />
-                                    votes:  {article.votes}<br />
-                                    comment count:  {article.comment_count}<br />
-                                    created at: {article.created_at}<br />
+                                    Author: {article.author}<br />
+                                    Topic: {article.topic}<br />
+                                    Votes:  {article.votes}<br />
+                                    Comment count:  {article.comment_count}<br />
+                                    Created: {moment(article.created_at).fromNow()}<br />
                                     <p>   </p><br />
                                 </div>
                             )
@@ -82,8 +84,12 @@ class Articles extends Component {
         this.getArticles()
     }
     componentDidUpdate(prevProps, prevState) {
-
-        if (prevProps !== this.props || prevState.author !== this.state.author || prevState.topic !== this.state.topic || prevState.sort_by !== this.state.sort_by || prevState.checked !== this.state.checked) {
+        const props = prevProps !== this.props;
+        const author = prevState.author !== this.state.author;
+        const topic = prevState.topic !== this.state.topic;
+        const sort_by = prevState.sort_by !== this.state.sort_by;
+        const checked = prevState.checked !== this.state.checked;
+        if (props || author || topic || sort_by || checked) {
             this.getArticles()
         }
     }

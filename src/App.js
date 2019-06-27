@@ -27,10 +27,10 @@ class App extends Component {
         <Navbar username={username} loggedIn={loggedIn} />
         <Router>
           <Home path="/" />
-          <AccountManager path="/accounts" />
-          <Users path="/accounts/users" />
+          <AccountManager path="/accounts" username={username} />
+          <Users path="/accounts/users" username={username} />
           <Articles path="/articles" />
-          <Article path="/articles/:id" />
+          <Article path="/articles/:id" username={username} />
           <Topics path="/topics" />
         </Router>
 

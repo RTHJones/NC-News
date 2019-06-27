@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import * as api from './api';
 import CommentsList from './CommentsList'
 import Voter from './Voter'
+import Moment from 'react-moment';
+import moment from 'moment';
 
 class Article extends Component {
     state = {
@@ -19,10 +21,10 @@ class Article extends Component {
                     Topic: {article.topic}<br />
                     Body: {article.body}<br />
                     Comment Count: {article.comment_count}<br />
-                    Created At: {article.created_at}<br />
+                    Created: {moment(article.created_at).fromNow()}<br />
                     <Voter comment={false} votes={article.votes} id={article.article_id} />
                 </div>}
-                <CommentsList id={this.props.id} />
+                <CommentsList username={this.props.username} id={this.props.id} />
             </div >
         );
     };
