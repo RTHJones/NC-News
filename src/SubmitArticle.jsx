@@ -18,7 +18,7 @@ class SubmitArticle extends Component {
                     <form className='articleForm' onSubmit={this.handleSubmit}>
                         <label>
                             Title:
-                    <input className='articleFormComponent' onChange={this.handleChange} type="text" name="title" placeholder="Article Title" />
+                    <input className='articleFormComponent' onChange={(event) => this.handleChange(event, 'title')} type="text" name="title" placeholder="Article Title" />
                         </label><br />
                         <label>Topic Selection:
                         <select className='articleFormComponent' onChange={(event) => {
@@ -26,14 +26,14 @@ class SubmitArticle extends Component {
                             }} defaultValue={''}>
                                 <option value={''}>Topic</option>
                                 {topics && topics.map(topic => {
-                                    return <option key={topic.slug} value={topic.slug}>{topic.slug.charAt(0).toUpperCase() + topic.slug.slice(1)}</option>
+                                    return <option key={topic.slug} value={topic.slug} name={topic.slug}>{topic.slug.charAt(0).toUpperCase() + topic.slug.slice(1)} </option>
                                 })}
                             </select>
                         </label>
                         <br />
                         <label>
                             Article Body:
-                    <input className='articleFormComponent' onChange={this.handleChange} type="text" name="body" placeholder="Write your article here!" />
+                    <input className='articleFormComponent' onChange={(event) => this.handleChange(event, 'body')} type="text" name="body" placeholder="Write your article here!" />
                         </label><br />
                         <button className='articleFormComponent' onClick={this.handleSubmit}>Create Your Article</button>
                     </form>
@@ -48,8 +48,9 @@ class SubmitArticle extends Component {
             })
             .catch(err => console.log(err))
     }
-    handleChange = (event) => {
-        this.setState({ [event.target.name]: event.target.value })
+    handleChange = (event, input) => {
+        console.log(event.target.value, '-->', input)
+        this.setState({ [input]: event.target.value })
     }
     handleSubmit = (event) => {
         let { title, topic, username, body } = this.state;

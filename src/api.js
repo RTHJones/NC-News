@@ -93,3 +93,16 @@ export const vote = (id, increment, comment) => {
             .catch(err => console.log(err))
     )
 }
+export const deleteComment = (id, article) => {
+    return (
+        request
+            .delete(article ? `/articles/${id}` : `/comments/${id}`)
+            .then(res => {
+                return { response: res, info: 'comment deleted' }
+            })
+            .catch(console.dir)
+    )
+}
+export const deleteArticle = () => {
+
+}

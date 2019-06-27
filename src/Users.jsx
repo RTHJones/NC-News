@@ -49,12 +49,12 @@ class Users extends Component {
                 <div>
                     {users && users.map(user => {
                         return (
-                            <Link
+                            <Link key={user.username}
                                 to={`/articles`}
                                 state={
                                     { author: user.username }
                                 }>
-                                <div className="userCard" key={user.username}>
+                                <div className="userCard" >
                                     <p></p>
                                     Username: {user.username}<br />
                                     Name: {user.name}<br />
