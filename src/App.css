@@ -80,7 +80,12 @@ background-color: beige;
   background-color: beige;
   border-width: 1px 2px 1px 2px;
 }
-h1{
+.deleteButton {
+  background-color: rgb(87, 10, 10);
+  font-family: Lobster, monospace;
+  color: rgb(224, 202, 202);
+}
+h1 {
   font-family: Lobster, monospace;
   font-size: 90px;
   margin-bottom: 0px;

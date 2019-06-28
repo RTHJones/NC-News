@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import * as api from './api'
-import Voter from './Voter'
+import Voter from './Voter';
 import moment from 'moment';
 
 class CommentsList extends Component {
     state = {
-        showComments: false,
         comments: null,
+        showComments: false,
         userComment: '',
+        loggedInUser: this.props.user
     }
     render() {
-        let { comments, showComments } = this.state
+        let { comments, showComments, userComment } = this.state
         return (
             <div>
                 <div className="commentForm" >
@@ -18,12 +19,12 @@ class CommentsList extends Component {
                         <label> Add your comment:
                         <input onChange={this.handleChange} type="text" placeholder="Type your comment here" value={this.state.userComment} />
                         </label>
-                        <button>Submit Comment</button>
+                        <button disabled={userComment === ''}>Submit Comment</button>
                     </form>
                 </div>
                 <div className="bubbleCard" onClick={this.toggleComments}>
                     <img className="speechBubble" alt="a speech bubble" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Comments_alt_font_awesome.svg/2000px-Comments_alt_font_awesome.svg.png" />
-                    <p>Click here to toggle comments</p>
+                    <p>Click to view comments</p>
                 </div>
                 {showComments && <div>
                     {comments && comments.map(comment => {
@@ -34,6 +35,9 @@ class CommentsList extends Component {
                                 {comment.body}<br />
                                 Created: {moment(comment.created_at).fromNow()}<br />
                                 <Voter comment={true} votes={comment.votes} id={comment.comment_id} />
+                                {this.props.username === comment.author && <div>
+                                    <button className="deleteButton" onClick={() => this.removeItem(comment.comment_id, false)}>Delete This!</button>
+                                </div>}
                                 <p></p>
                             </div>
                         )
@@ -45,12 +49,26 @@ class CommentsList extends Component {
     }
     handleSubmit = (event) => {
         event.preventDefault();
-        api.postComment(this.props.id, this.state.userComment, this.props.username)
-            .then(() => api.fetchComments(this.props.id))
-            .then((comments) => this.setState({ comments: comments, userComment: '', showComments: true }));
+        if (this.state.userComment) {
+            api.postComment(this.props.id, this.state.userComment, this.props.username)
+                .then(() => api.fetchComments(this.props.id))
+                .then((comments) => this.setState({ comments: comments, userComment: '', showComments: true }));
+        }
     }
     handleChange = (event) => {
         this.setState({ userComment: event.target.value })
+    }
+    handleDelete = () => {
+        api.fetchComments(this.props.id)
+            .then(comments => this.setState({ comments }))
+    }
+    removeItem = (id, article) => {
+        api.deleteItem(id, article)
+            .then(data => {
+                console.log(data, '<--comment removeItem returned data')
+                this.handleDelete()
+            })
+            .catch(console.dir)
     }
     toggleComments = () => {
         let { id } = this.props;

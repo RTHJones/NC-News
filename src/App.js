@@ -30,7 +30,7 @@ class App extends Component {
           <Home path="/" />
           <AccountManager path="/accounts" username={username} />
           <Users path="/accounts/users" username={username} />
-          <Articles path="/articles" />
+          <Articles path="/articles" username={username} />
           <Article path="/articles/:id" username={username} />
           <Topics path="/topics" />
           <SubmitArticle path='/submitArticle' username={username} />

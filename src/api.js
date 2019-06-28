@@ -93,16 +93,13 @@ export const vote = (id, increment, comment) => {
             .catch(err => console.log(err))
     )
 }
-export const deleteComment = (id, article) => {
+export const deleteItem = (id, article) => {
     return (
         request
             .delete(article ? `/articles/${id}` : `/comments/${id}`)
             .then(res => {
-                return { response: res, info: 'comment deleted' }
+                return { response: res, info: 'item deleted' }
             })
             .catch(console.dir)
     )
-}
-export const deleteArticle = () => {
-
 }

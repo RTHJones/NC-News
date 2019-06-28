@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import * as api from './api';
 import CommentsList from './CommentsList'
-import Voter from './Voter'
+import Voter from './Voter';
+import Deleter from './Deleter';
 import moment from 'moment';
+import { navigate } from '@reach/router';
 
 class Article extends Component {
     state = {
@@ -22,6 +24,7 @@ class Article extends Component {
                     Comment Count: {article.comment_count}<br />
                     Created: {moment(article.created_at).fromNow()}<br />
                     <Voter comment={false} votes={article.votes} id={article.article_id} />
+                    {article.author === this.props.username && <Deleter id={article.article_id} article={true} refresher={this.handleDelete} />}
                 </div>}
                 <CommentsList username={this.props.username} id={this.props.id} />
             </div >
@@ -34,6 +37,9 @@ class Article extends Component {
             .then(article => {
                 this.setState({ article: article, isLoading: false })
             })
+    }
+    handleDelete = () => {
+        console.log('article handleDelete has been called, and this is it\'s answer!')
     }
 
 };

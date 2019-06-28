@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as api from './api';
+import { navigate } from '@reach/router'
 
 class SubmitArticle extends Component {
     state = {
@@ -12,7 +13,8 @@ class SubmitArticle extends Component {
     render() {
         let { topics } = this.state;
         return (
-            <div> <h2>Article Submission Form</h2>
+            <div>
+                <h2>Article Submission Form</h2>
                 <label> You are logged in as: "{this.state.username}"
                 <p></p>
                     <form className='articleForm' onSubmit={this.handleSubmit}>
@@ -39,7 +41,7 @@ class SubmitArticle extends Component {
                     </form>
                 </label>
             </div>
-        );
+        )
     }
     componentDidMount = () => {
         api.fetchTopics()
@@ -49,15 +51,17 @@ class SubmitArticle extends Component {
             .catch(err => console.log(err))
     }
     handleChange = (event, input) => {
-        console.log(event.target.value, '-->', input)
         this.setState({ [input]: event.target.value })
     }
     handleSubmit = (event) => {
+        event.preventDefault()
         let { title, topic, username, body } = this.state;
         console.log(title, topic, username, body)
-        event.preventDefault()
         api.postArticle(title, topic, username, body)
-            .then()
+            .then(res => {
+                console.log(res, '<--- res')
+                navigate(`/articles/${res['New Article Created'].article_id}`)
+            })
             .catch(console.dir)
     }
 }
