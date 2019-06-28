@@ -11,7 +11,7 @@ class SubmitArticle extends Component {
         topics: null,
     }
     render() {
-        let { topics } = this.state;
+        let { title, topic, username, body, topics } = this.state;
         return (
             <div>
                 <h2>Article Submission Form</h2>
@@ -37,7 +37,7 @@ class SubmitArticle extends Component {
                             Article Body:
                     <input className='articleFormComponent' onChange={(event) => this.handleChange(event, 'body')} type="text" name="body" placeholder="Write your article here!" />
                         </label><br />
-                        <button className='articleFormComponent' onClick={this.handleSubmit}>Create Your Article</button>
+                        <button className='articleFormComponent' disabled={!(title && topic && username && body)} onClick={this.handleSubmit}>Create Your Article</button>
                     </form>
                 </label>
             </div>
