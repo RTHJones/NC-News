@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import * as api from './api';
 import CommentsList from './CommentsList'
 import Voter from './Voter';
-import Deleter from './Deleter';
 import moment from 'moment';
 import { navigate } from '@reach/router';
 
@@ -24,7 +23,9 @@ class Article extends Component {
                     Comment Count: {article.comment_count}<br />
                     Created: {moment(article.created_at).fromNow()}<br />
                     <Voter comment={false} votes={article.votes} id={article.article_id} />
-                    {article.author === this.props.username && <Deleter id={article.article_id} article={true} refresher={this.handleDelete} />}
+                    {this.props.username === article.author && <div>
+                        <button className="deleteButton" onClick={() => this.removeItem(article.article_id, true)}>Delete This!</button>
+                    </div>}
                 </div>}
                 <CommentsList username={this.props.username} id={this.props.id} />
             </div >
@@ -38,8 +39,15 @@ class Article extends Component {
                 this.setState({ article: article, isLoading: false })
             })
     }
+    removeItem = (id, article) => {
+        api.deleteItem(id, article)
+            .then(data => {
+                this.handleDelete()
+            })
+            .catch(console.dir)
+    }
     handleDelete = () => {
-        console.log('article handleDelete has been called, and this is it\'s answer!')
+        navigate(`/articles`)
     }
 
 };

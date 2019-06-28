@@ -94,6 +94,7 @@ export const vote = (id, increment, comment) => {
     )
 }
 export const deleteItem = (id, article) => {
+    console.log(id, article)
     return (
         request
             .delete(article ? `/articles/${id}` : `/comments/${id}`)
