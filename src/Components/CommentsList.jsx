@@ -13,16 +13,15 @@ class CommentsList extends Component {
     render() {
         const { comments, showComments, userComment } = this.state
         return (
-            <div>{this.props.loggedIn ?
+            <div>
                 <div className="commentForm" >
                     <form onSubmit={this.handleSubmit}>
                         <label> Add your comment:
                         <textarea rows="4" cols="100" onChange={this.handleChange} placeholder="Type your comment here" value={this.state.userComment} />
                         </label>
-                        <button disabled={userComment === ''}>Submit Comment</button>
+                        <button disabled={!this.props.loggedIn || userComment === ''}>{this.props.loggedIn ? <>Submit Comment</> : <>Log in to comment!</>}</button>
                     </form>
-                </div> : <div className="commentform"> <br />Log in to comment on this article <br /></div>}
-
+                </div>
                 <div className="bubbleCard" onClick={this.toggleComments}>
                     <img className="speechBubble" alt="a speech bubble" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Comments_alt_font_awesome.svg/2000px-Comments_alt_font_awesome.svg.png" />
                     <p>Click to view comments</p>
