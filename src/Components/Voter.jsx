@@ -8,12 +8,12 @@ class Voter extends Component {
     render() {
         const { voteChange } = this.state;
         const { votes, id, comment } = this.props;
-        return (
+        return (this.props.loggedIn ?
             <div>
                 <button disabled={voteChange > 0} onClick={() => this.handleVote(id, 1, comment)}>Vote Up</button>
                 Votes: {votes + voteChange}
                 <button disabled={voteChange < 0} onClick={() => this.handleVote(id, -1, comment)}>Vote Down</button><br />
-            </div>
+            </div> : 'Log in to vote on articles and comments!'
         );
     }
     handleVote = (id, increment, comment) => {

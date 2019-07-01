@@ -181,6 +181,9 @@ max-height:10%;
   padding: 0px;
   margin: 0px;
 }
+.submissionWarning {
+  background-color: red;
+}
 .topicCard {
   border: solid grey;
   background-color: beige;

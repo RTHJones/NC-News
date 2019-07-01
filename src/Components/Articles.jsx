@@ -120,9 +120,10 @@ class Articles extends Component {
         const order = (checked ? 'asc' : 'desc')
         api.fetchArticles(topic, author, sort_by, order, page, limit)
             .then(data => {
-                this.setState({ articles: data.articles, totalCount: data.total_count, errorMsg: '' })
-                if (!data.articles) {
-                    this.setState({ errorMsg: 'No Articles Found' })
+                if (!data) {
+                    this.setState({ errorMsg: 'No Articles Found', articles: '' })
+                } else {
+                    this.setState({ articles: data.articles, totalCount: data.total_count, errorMsg: '' })
                 }
             })
     }

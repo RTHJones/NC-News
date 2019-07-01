@@ -22,7 +22,7 @@ class Article extends Component {
                     Body: {article.body}<br />
                     Comment Count: {article.comment_count}<br />
                     Created: {moment(article.created_at).fromNow()}<br />
-                    <Voter comment={false} votes={article.votes} id={article.article_id} />
+                    <Voter loggedIn={this.props.loggedIn} comment={false} votes={article.votes} id={article.article_id} />
                     {this.props.username === article.author && <div>
                         <button className="deleteButton" onClick={() => this.removeItem(article.article_id, true)}>Delete This!</button>
                     </div>}

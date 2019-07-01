@@ -33,10 +33,10 @@ class App extends Component {
           <Home path="/" />
           <AccountManager path="/accounts" invalidUser={this.state.invalidUser} logIn={this.logIn} loggedInUser={username} loggedIn={loggedIn} />
           <Users path="/accounts/users" username={username} />
-          <Articles path="/articles" username={username} />
-          <Article path="/articles/:id" username={username} />
+          <Articles path="/articles" username={username} loggedIn={loggedIn} />
+          <Article path="/articles/:id" username={username} loggedIn={loggedIn} />
           <Topics path="/topics" />
-          <SubmitArticle path='/submit-article' username={username} />
+          <SubmitArticle path='/submit-article' username={username} loggedIn={loggedIn} />
           <ErrorPage default />
         </Router>
 

@@ -15,8 +15,7 @@ class SubmitArticle extends Component {
         return (
             <div>
                 <h2>Article Submission Form</h2>
-                <label> You are logged in as: "{this.state.username}"
-                <p></p>
+                <label> {this.props.loggedIn ? <>You are logged in as: "{this.state.username}"</> : <div className='submissionWarning'>You must log in to submit an article!</div>}
                     <form className='articleForm' onSubmit={this.handleSubmit}>
                         <label>
                             Title:
