@@ -16,7 +16,7 @@ class Article extends Component {
         return (
             <div>
                 {article && <div className="articleTile">
-                    <h4>Article# {article.article_id}: {article.title}</h4><br />
+                    <h3> {article.title}</h3><br />
                     Author: {article.author}<br />
                     Topic: {article.topic}<br />
                     Body: {article.body}<br />
