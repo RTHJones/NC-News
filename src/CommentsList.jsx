@@ -17,7 +17,7 @@ class CommentsList extends Component {
                 <div className="commentForm" >
                     <form onSubmit={this.handleSubmit}>
                         <label> Add your comment:
-                        <input onChange={this.handleChange} type="text" placeholder="Type your comment here" value={this.state.userComment} />
+                        <textarea rows="4" cols="100" onChange={this.handleChange} placeholder="Type your comment here" value={this.state.userComment} />
                         </label>
                         <button disabled={userComment === ''}>Submit Comment</button>
                     </form>
