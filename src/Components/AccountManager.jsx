@@ -8,10 +8,11 @@ class AccountManager extends Component {
         avatarURL: null
     }
     render() {
+        const { username } = this.state;
         return (
             <div>
                 <h2>Account Manager</h2><br />
-                Enter Username to Log In:<input type="text" placholder="username"></input><button>Log In</button><br />
+                {!username && <label>Enter Username to Log In:<input type="text" placholder="username"></input><button>Log In</button></label>} <br />
                 <br />
                 <br />
                 <form className="userForm" display="block" > <h3>Create New User </h3><br />
