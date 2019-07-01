@@ -27,7 +27,7 @@ class CommentsList extends Component {
                     <p>Click to view comments</p>
                 </div>
                 {showComments && <div>
-                    {comments && comments.map(comment => {
+                    {comments ? comments.map(comment => {
                         return (
                             <div key={comment.comment_id} className="commentCard">
                                 <p></p>
@@ -41,7 +41,7 @@ class CommentsList extends Component {
                                 <p></p>
                             </div>
                         )
-                    })}
+                    }) : <div className="commentCard"> <h3>No comments found for article</h3></div>}
                 </div>}
 
             </div>
@@ -65,7 +65,6 @@ class CommentsList extends Component {
     removeItem = (id, article) => {
         api.deleteItem(id, article)
             .then(data => {
-                console.log(data, '<--comment removeItem returned data')
                 this.handleDelete()
             })
             .catch(console.dir)
