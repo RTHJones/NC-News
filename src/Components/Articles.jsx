@@ -104,16 +104,11 @@ class Articles extends Component {
     }
     componentDidUpdate(prevProps, prevState) {
         const { author, topic, sort_by, checked, page, limit } = this.state;
-        const propsCheck = prevProps !== this.props;
-        const authorCheck = prevState.author !== author;
-        const topicCheck = prevState.topic !== topic;
-        const sort_byCheck = prevState.sort_by !== sort_by;
-        const checkedCheck = prevState.checked !== checked;
-        const pageCheck = prevState.page !== page;
-        const limitCheck = prevState.limit !== limit;
-        if (propsCheck || authorCheck || topicCheck || sort_byCheck || checkedCheck || pageCheck || limitCheck) {
-            this.getArticles()
-        }
+        const properties = [author, topic, sort_by, checked, page, limit];
+        const needArticles = prevProps !== this.props || properties.some(property => {
+            return prevState[property] !== property
+        })
+        if (needArticles) { this.getArticles() }
     }
     getArticles = () => {
         const { author, sort_by, topic, checked, page, limit } = this.state;

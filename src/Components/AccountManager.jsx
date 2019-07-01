@@ -7,7 +7,8 @@ class AccountManager extends Component {
         username: '',
         name: '',
         avatarUrl: '',
-        newUser: ''
+        newUser: '',
+        searchedName: ''
     }
     render() {
         const { loggedInUser } = this.props;
@@ -47,10 +48,13 @@ class AccountManager extends Component {
                 <br />
                 <br />
                 Search Users By Username:
-                <input placeholder="username" type="text" name="searchterm"></input><button>Search Now</button>
+                <input placeholder="username" type="text" name="searchterm"></input><button onClick={() => this.getDetails(this.state.searchedName)}>Search Now</button>
             </div >
 
         );
+    }
+    getDetails = () => {
+
     }
     handleSubmit = (event) => {
         const { username, name, avatarUrl } = this.state;
