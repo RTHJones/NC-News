@@ -34,7 +34,7 @@ class App extends Component {
           <Articles path="/articles" username={username} />
           <Article path="/articles/:id" username={username} />
           <Topics path="/topics" />
-          <SubmitArticle path='/submitArticle' username={username} />
+          <SubmitArticle path='/submit-article' username={username} />
           <ErrorPage default />
         </Router>
 
