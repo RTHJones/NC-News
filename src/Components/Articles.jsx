@@ -12,10 +12,12 @@ class Articles extends Component {
         author: this.props.location.state.author || '',
         sort_by: null,
         page: 1,
-        checked: false
+        checked: false,
+        totalCount: 0,
+        limit: 10
     }
     render() {
-        let { articles, topics, authors, page } = this.state;
+        const { articles, topics, authors, page } = this.state;
         return (
             <div>
                 <div className="articleBar">Filter Articles By:
@@ -66,16 +68,22 @@ class Articles extends Component {
                     }
                 </div>
                 <div className="pageBar">
+                    <button onClick={() => this.changePage(this.prevState, -1)} disabled={this.state.page === 1}>Previous Page</button>
                     Page: {page}
+                    <button onClick={() => this.changePage(this.prevState, 1)} disabled={this.state.page >= this.state.totalCount / this.state.limit}>Next Page</button>
+                    <label>Articles per page
+                        <select value={this.state.limit} onChange={(event) => this.handleChange(event, 'limit')}>
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="20">20</option>
+                        </select>
+                    </label>
                 </div>
             </div >
         );
     }
     changePage = (prevState, input) => {
-        let { page } = this.state
-        if (page + input <= 0) { alert('Already on first page') }
-        else if (page + input > 'MAXPAGE?!?!?!') { alert('Already on last page') }
-        else this.setState(prevState => {
+        this.setState(prevState => {
             return ({ page: prevState.page + input })
         })
     }
@@ -93,23 +101,24 @@ class Articles extends Component {
         this.getArticles()
     }
     componentDidUpdate(prevProps, prevState) {
-        let { author, topic, sort_by, checked, page } = this.state;
+        let { author, topic, sort_by, checked, page, limit } = this.state;
         const propsCheck = prevProps !== this.props;
         const authorCheck = prevState.author !== author;
         const topicCheck = prevState.topic !== topic;
         const sort_byCheck = prevState.sort_by !== sort_by;
         const checkedCheck = prevState.checked !== checked;
         const pageCheck = prevState.page !== page;
-        if (propsCheck || authorCheck || topicCheck || sort_byCheck || checkedCheck || pageCheck) {
+        const limitCheck = prevState.limit !== limit;
+        if (propsCheck || authorCheck || topicCheck || sort_byCheck || checkedCheck || pageCheck || limitCheck) {
             this.getArticles()
         }
     }
     getArticles = () => {
-        let { author, sort_by, topic, checked } = this.state;
+        let { author, sort_by, topic, checked, page, limit } = this.state;
         let order = (checked ? 'asc' : 'desc')
-        api.fetchArticles(topic, author, sort_by, order)
-            .then(articles => {
-                this.setState({ articles: articles })
+        api.fetchArticles(topic, author, sort_by, order, page, limit)
+            .then(data => {
+                this.setState({ articles: data.articles, totalCount: data.total_count })
             })
     }
     handleChange = (event, input) => {

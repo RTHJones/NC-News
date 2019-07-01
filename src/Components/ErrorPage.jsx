@@ -3,12 +3,11 @@ import React, { Component } from 'react';
 class ErrorPage extends Component {
     state = {
         err: this.props.err || null,
-        data: null,
         message: this.props.message || 'The requested resource can not be found. Please check url is typed correctly and all data fields have been completed.',
         code: this.props.code || 404
     }
     render() {
-        let { err, data, message, code } = this.state;
+        const { message, code } = this.state;
         return (
             <div>
                 <div className="errBox">
@@ -23,7 +22,7 @@ class ErrorPage extends Component {
     }
     componentDidMount = () => {
         let error = this.props.err;
-        console.log(error)
+        console.dir(error)
         this.setState({ err: error || null })
     }
 }

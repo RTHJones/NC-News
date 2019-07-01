@@ -13,7 +13,7 @@ export const deleteItem = (id, article) => {
             .catch(console.dir)
     )
 }
-export const fetchArticles = (topic, author, sort_by, order) => {
+export const fetchArticles = (topic, author, sort_by, order, page, limit) => {
     return (
         request
             .get('/articles', {
@@ -21,11 +21,13 @@ export const fetchArticles = (topic, author, sort_by, order) => {
                     topic: topic,
                     author: author,
                     sort_by: sort_by,
-                    order: order
+                    order: order,
+                    p: page,
+                    limit: limit
                 }
             })
             .then(({ data }) => {
-                return data.articles
+                return data
             })
             .catch(err => console.log(err))
     )
@@ -57,7 +59,7 @@ export const fetchSingleArticle = (id) => {
             .then(({ data }) => {
                 return data.article
             })
-            .catch(err => console.log(err))
+            .catch(err => console.dir(err))
     )
 }
 export const fetchTopics = () => {
