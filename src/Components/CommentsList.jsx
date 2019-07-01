@@ -13,7 +13,7 @@ class CommentsList extends Component {
     render() {
         const { comments, showComments, userComment } = this.state
         return (
-            <div>
+            <div>{this.props.loggedIn ?
                 <div className="commentForm" >
                     <form onSubmit={this.handleSubmit}>
                         <label> Add your comment:
@@ -21,7 +21,8 @@ class CommentsList extends Component {
                         </label>
                         <button disabled={userComment === ''}>Submit Comment</button>
                     </form>
-                </div>
+                </div> : <div className="commentform"> <br />Log in to comment on this article <br /></div>}
+
                 <div className="bubbleCard" onClick={this.toggleComments}>
                     <img className="speechBubble" alt="a speech bubble" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Comments_alt_font_awesome.svg/2000px-Comments_alt_font_awesome.svg.png" />
                     <p>Click to view comments</p>

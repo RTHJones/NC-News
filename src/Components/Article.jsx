@@ -27,7 +27,7 @@ class Article extends Component {
                         <button className="deleteButton" onClick={() => this.removeItem(article.article_id, true)}>Delete This!</button>
                     </div>}
                 </div>}
-                <CommentsList username={this.props.username} id={this.props.id} />
+                <CommentsList loggedIn={this.props.loggedIn} username={this.props.username} id={this.props.id} />
             </div >
         );
     };
