@@ -21,7 +21,7 @@ class ErrorPage extends Component {
         );
     }
     componentDidMount = () => {
-        let error = this.props.err;
+        const error = this.props.err;
         console.dir(error)
         this.setState({ err: error || null })
     }

@@ -11,7 +11,7 @@ class SubmitArticle extends Component {
         topics: null,
     }
     render() {
-        let { title, topic, username, body, topics } = this.state;
+        const { title, topic, username, body, topics } = this.state;
         return (
             <div>
                 <h2>Article Submission Form</h2>
@@ -54,7 +54,7 @@ class SubmitArticle extends Component {
     }
     handleSubmit = (event) => {
         event.preventDefault()
-        let { title, topic, username, body } = this.state;
+        const { title, topic, username, body } = this.state;
         api.postArticle(title, topic, username, body)
             .then(res => {
                 navigate(`/articles/${res['New Article Created'].article_id}`)

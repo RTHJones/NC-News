@@ -11,7 +11,7 @@ class Users extends Component {
         limit: 10
     }
     render() {
-        let { users } = this.state;
+        const { users } = this.state;
         return (
             <div>
 

@@ -6,8 +6,8 @@ class Voter extends Component {
         voteChange: 0
     }
     render() {
-        let { voteChange } = this.state;
-        let { votes, id, comment } = this.props;
+        const { voteChange } = this.state;
+        const { votes, id, comment } = this.props;
         return (
             <div>
                 <button disabled={voteChange > 0} onClick={() => this.handleVote(id, 1, comment)}>Vote Up</button>

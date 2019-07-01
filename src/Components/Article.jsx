@@ -11,7 +11,7 @@ class Article extends Component {
         isLoading: true
     }
     render() {
-        let { article, isLoading } = this.state
+        const { article, isLoading } = this.state
         if (isLoading) return <p>...Loading</p>
         return (
             <div>
@@ -32,7 +32,7 @@ class Article extends Component {
         );
     };
     componentDidMount() {
-        let { id } = this.props
+        const { id } = this.props
         this.setState({ isloading: true })
         api.fetchSingleArticle(id)
             .then(article => {

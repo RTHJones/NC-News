@@ -10,7 +10,7 @@ class Topics extends Component {
         cooking: 'https://res.cloudinary.com/simplotel/image/upload/x_-1,y_0,w_1249,h_625,r_0,c_crop,q_60,fl_progressive/w_1249,f_auto,c_fit/colonels-retreat/Treat,Colonels_Retreat,_Cooking_Classes_in_Delhi_1'
     }
     render() {
-        let { topics } = this.state;
+        const { topics } = this.state;
         return (
             <div>
                 {topics && topics.map(topic => {

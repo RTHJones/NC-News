@@ -11,7 +11,7 @@ class CommentsList extends Component {
         loggedInUser: this.props.user
     }
     render() {
-        let { comments, showComments, userComment } = this.state
+        const { comments, showComments, userComment } = this.state
         return (
             <div>
                 <div className="commentForm" >
@@ -71,7 +71,7 @@ class CommentsList extends Component {
             .catch(console.dir)
     }
     toggleComments = () => {
-        let { id } = this.props;
+        const { id } = this.props;
         api.fetchComments(id)
             .then(comments => {
                 this.setState({

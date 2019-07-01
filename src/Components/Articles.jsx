@@ -101,7 +101,7 @@ class Articles extends Component {
         this.getArticles()
     }
     componentDidUpdate(prevProps, prevState) {
-        let { author, topic, sort_by, checked, page, limit } = this.state;
+        const { author, topic, sort_by, checked, page, limit } = this.state;
         const propsCheck = prevProps !== this.props;
         const authorCheck = prevState.author !== author;
         const topicCheck = prevState.topic !== topic;
@@ -114,8 +114,8 @@ class Articles extends Component {
         }
     }
     getArticles = () => {
-        let { author, sort_by, topic, checked, page, limit } = this.state;
-        let order = (checked ? 'asc' : 'desc')
+        const { author, sort_by, topic, checked, page, limit } = this.state;
+        const order = (checked ? 'asc' : 'desc')
         api.fetchArticles(topic, author, sort_by, order, page, limit)
             .then(data => {
                 this.setState({ articles: data.articles, totalCount: data.total_count })
