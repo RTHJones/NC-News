@@ -71,6 +71,14 @@ class Articles extends Component {
             </div >
         );
     }
+    changePage = (prevState, input) => {
+        let { page } = this.state
+        if (page + input <= 0) { alert('Already on first page') }
+        else if (page + input > 'MAXPAGE?!?!?!') { alert('Already on last page') }
+        else this.setState(prevState => {
+            return ({ page: prevState.page + input })
+        })
+    }
     componentDidMount = () => {
         api.fetchTopics()
             .then(topics => {
@@ -109,14 +117,6 @@ class Articles extends Component {
     }
     handleCheck = () => {
         this.setState({ checked: (this.state.checked ? false : true) })
-    }
-    changePage = (prevState, input) => {
-        let { page } = this.state
-        if (page + input <= 0) { alert('Already on first page') }
-        else if (page + input > 'MAXPAGE?!?!?!') { alert('Already on last page') }
-        else this.setState(prevState => {
-            return ({ page: prevState.page + input })
-        })
     }
 };
 

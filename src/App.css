@@ -68,17 +68,17 @@ background-color: beige;
   border-style: solid;
   border-width: 1px 2px 1px 2px;
 }
+.commentCard {
+  border: solid grey;
+  background-color: beige;
+  border-width: 1px 2px 1px 2px;
+}
 .commentForm {
   background-color:beige;
   border-color: grey;
   border-style: solid;
   border-width: 1px 2px 1px 2px;
   margin: 0px
-}
-.commentCard {
-  border: solid grey;
-  background-color: beige;
-  border-width: 1px 2px 1px 2px;
 }
 .deleteButton {
   background-color: rgb(87, 10, 10);
@@ -201,10 +201,6 @@ max-height:10%;
   background-color: beige;
   border-width: 1px 2px 1px 2px;
 }
-.userImg {
-  max-width: 100px;
-  max-height: 100px;
-}
 .userForm {
   border: solid grey;
   background-color: beige;
@@ -212,4 +208,8 @@ max-height:10%;
   border-radius: 20px;
   width: 50%;
   margin-left:25%;
+}
+.userImg {
+  max-width: 100px;
+  max-height: 100px;
 }

@@ -47,6 +47,14 @@ class CommentsList extends Component {
             </div>
         );
     }
+
+    handleChange = (event) => {
+        this.setState({ userComment: event.target.value })
+    }
+    handleDelete = () => {
+        api.fetchComments(this.props.id)
+            .then(comments => this.setState({ comments }))
+    }
     handleSubmit = (event) => {
         event.preventDefault();
         if (this.state.userComment) {
@@ -54,13 +62,6 @@ class CommentsList extends Component {
                 .then(() => api.fetchComments(this.props.id))
                 .then((comments) => this.setState({ comments: comments, userComment: '', showComments: true }));
         }
-    }
-    handleChange = (event) => {
-        this.setState({ userComment: event.target.value })
-    }
-    handleDelete = () => {
-        api.fetchComments(this.props.id)
-            .then(comments => this.setState({ comments }))
     }
     removeItem = (id, article) => {
         api.deleteItem(id, article)

@@ -3,22 +3,13 @@ import axios from 'axios'
 const request = axios.create({ baseURL: 'https://robins-nc-news.herokuapp.com/api' })
 
 
-export const postArticle = (title, topic, username, body) => {
+export const deleteItem = (id, article) => {
+    console.log(id, article)
     return (
         request
-            .post(`/articles`, { title, topic, username, body })
-            .then(({ data }) => {
-                return data
-            })
-            .catch(console.dir)
-    )
-}
-export const postComment = (id, body, username) => {
-    return (
-        request
-            .post(`articles/${id}/comments`, { body: body, username: username })
-            .then(({ data }) => {
-                return data
+            .delete(article ? `/articles/${id}` : `/comments/${id}`)
+            .then(res => {
+                return { response: res, info: 'item deleted' }
             })
             .catch(console.dir)
     )
@@ -40,12 +31,12 @@ export const fetchArticles = (topic, author, sort_by, order) => {
             .catch(err => console.log(err))
     )
 }
-export const fetchSingleArticle = (id) => {
+export const fetchAuthors = () => {
     return (
         request
-            .get(`/articles/${id}`)
+            .get(`/users?limit=100`)
             .then(({ data }) => {
-                return data.article
+                return data.users
             })
             .catch(err => console.log(err))
     )
@@ -61,7 +52,16 @@ export const fetchComments = (id) => {
             .catch(err => console.log(err))
     )
 }
-
+export const fetchSingleArticle = (id) => {
+    return (
+        request
+            .get(`/articles/${id}`)
+            .then(({ data }) => {
+                return data.article
+            })
+            .catch(err => console.log(err))
+    )
+}
 export const fetchTopics = () => {
     return (
         request
@@ -72,14 +72,24 @@ export const fetchTopics = () => {
             .catch(err => console.log(err))
     )
 }
-export const fetchAuthors = () => {
+export const postArticle = (title, topic, username, body) => {
     return (
         request
-            .get(`/users?limit=100`)
+            .post(`/articles`, { title, topic, username, body })
             .then(({ data }) => {
-                return data.users
+                return data
             })
-            .catch(err => console.log(err))
+            .catch(console.dir)
+    )
+}
+export const postComment = (id, body, username) => {
+    return (
+        request
+            .post(`articles/${id}/comments`, { body: body, username: username })
+            .then(({ data }) => {
+                return data
+            })
+            .catch(console.dir)
     )
 }
 export const vote = (id, increment, comment) => {
@@ -91,16 +101,5 @@ export const vote = (id, increment, comment) => {
                 return data
             })
             .catch(err => console.log(err))
-    )
-}
-export const deleteItem = (id, article) => {
-    console.log(id, article)
-    return (
-        request
-            .delete(article ? `/articles/${id}` : `/comments/${id}`)
-            .then(res => {
-                return { response: res, info: 'item deleted' }
-            })
-            .catch(console.dir)
     )
 }

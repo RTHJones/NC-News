@@ -41,6 +41,9 @@ class Article extends Component {
                 if (!article) navigate('/errorpage')
             })
     }
+    handleDelete = () => {
+        navigate(`/articles`)
+    }
     removeItem = (id, article) => {
         api.deleteItem(id, article)
             .then(data => {
@@ -48,10 +51,6 @@ class Article extends Component {
             })
             .catch(console.dir)
     }
-    handleDelete = () => {
-        navigate(`/articles`)
-    }
-
 };
 
 export default Article;

@@ -13,34 +13,7 @@ class Users extends Component {
     render() {
         let { users } = this.state;
         return (
-            <div>{/*
-                <div className="userBar">
-                    <select onChange={(event) => {
-                        this.handleChange(event, 'topic')
-                    }} defaultValue={null}>
-                        <option value={''}>Topic</option>
-                        {topics && topics.map(topic => {
-                            return <option selected={this.state.topic === topic.slug} value={topic.slug}>{topic.slug}</option>
-                        })}
-                    </select>
-                    <select onChange={(event) => this.handleChange(event, 'author')} defaultValue='null'>
-                        <option selected value={''}>Author</option>
-                        {authors &&
-                            authors.map(author => {
-                                return <option value={author.username}>{author.username}</option>
-                            })
-                        }
-                    </select> Sort Articles By:
-                    <select onChange={(event) => this.handleChange(event, 'sort_by')} defaultValue={null}>
-                        <option value="article_id">Article ID</option>
-                        <option value="author">Author</option>
-                        <option selected={true} value="">Age</option>
-                        <option value="votes">Vote Count</option>
-                        <option value="comment_count">Comment Count</option>
-                    </select>
-                    {' '}{' '}Reverse Sort Order:<input type="checkbox" onChange={this.handleCheck}></input>
-
-                    </div>*/}
+            <div>
 
                 <div>
                     {users && users.map(user => {

@@ -55,10 +55,8 @@ class SubmitArticle extends Component {
     handleSubmit = (event) => {
         event.preventDefault()
         let { title, topic, username, body } = this.state;
-        console.log(title, topic, username, body)
         api.postArticle(title, topic, username, body)
             .then(res => {
-                console.log(res, '<--- res')
                 navigate(`/articles/${res['New Article Created'].article_id}`)
             })
             .catch(console.dir)
