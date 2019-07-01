@@ -25,7 +25,9 @@ class Navbar extends Component {
                     { topic: '' }}>
                     <button>Submit Article</button>
                 </Link>
-                ____logged in as: {this.props.username}____<br />
+                {!this.props.loggedIn && <Link to='/accounts'><>{' '}Click here to log in</></Link>}
+                {this.props.loggedIn && <>____logged in as: {this.props.username}____
+                <button onClick={() => this.props.logOut()}>Log Out</button></>}
             </div>
         );
     };

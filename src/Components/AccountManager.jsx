@@ -5,14 +5,19 @@ class AccountManager extends Component {
     state = {
         username: null,
         name: null,
-        avatarURL: null
+        avatarURL: null,
+        newUser: ''
     }
     render() {
-        const { username } = this.state;
+        const { loggedInUser } = this.props;
         return (
             <div>
                 <h2>Account Manager</h2><br />
-                {!username && <label>Enter Username to Log In:<input type="text" placholder="username"></input><button>Log In</button></label>} <br />
+                {!loggedInUser && <label>Enter Username to Log In:<input value={this.state.newUser} onChange={(event) => this.handleChange(event.target.value)} type="text" placeholder="username"></input><button onClick={(event) => {
+                    this.props.logIn(this.state.newUser)
+                    this.setState({ newUser: '' })
+                }}>Log In</button></label>} <br />
+                {this.props.invalidUser && <>The Username entered has not been found</>}
                 <br />
                 <br />
                 <form className="userForm" display="block" > <h3>Create New User </h3><br />
@@ -47,6 +52,10 @@ class AccountManager extends Component {
     }
     handleSubmit = (event) => {
         event.preventDefault()
+    }
+    handleChange = (input) => {
+        this.setState({ newUser: input })
+        console.log(input)
     }
 };
 
