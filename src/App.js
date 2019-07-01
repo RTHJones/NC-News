@@ -8,6 +8,7 @@ import Articles from './Articles';
 import Article from './Article';
 import Topics from './Topics';
 import Users from './Users';
+import ErrorPage from './ErrorPage';
 import SubmitArticle from './SubmitArticle';
 import { Router, Link } from '@reach/router';
 
@@ -34,6 +35,7 @@ class App extends Component {
           <Article path="/articles/:id" username={username} />
           <Topics path="/topics" />
           <SubmitArticle path='/submitArticle' username={username} />
+          <ErrorPage default />
         </Router>
 
       </div>

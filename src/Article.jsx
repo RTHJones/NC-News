@@ -37,6 +37,8 @@ class Article extends Component {
         api.fetchSingleArticle(id)
             .then(article => {
                 this.setState({ article: article, isLoading: false })
+                console.log(article)
+                if (!article) navigate('/errorpage')
             })
     }
     removeItem = (id, article) => {

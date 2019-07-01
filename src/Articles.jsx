@@ -52,8 +52,8 @@ class Articles extends Component {
                             return (
                                 <div className="articleCard" key={article.title}>
                                     <Link to={`/articles/${article.article_id}`}>
-                                        <h3>Article {article.article_id}: {article.title}</h3></Link><br />
-                                    Author: {article.author}<br />
+                                        <h3> {article.title}</h3></Link><br />
+                                    By: {article.author}<br />
                                     Topic: {article.topic}<br />
                                     Votes:  {article.votes}<br />
                                     Comment count:  {article.comment_count}<br />

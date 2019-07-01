@@ -8,11 +8,7 @@ class Users extends Component {
         users: null,
         page: 1,
         sort_by: '',
-        limit: 10,
-        grumpy: 'https://ih0.redbubble.net/image.623813976.4374/raf,750x1000,075,t,fafafa:ca443f4786.jpg',
-        messy: 'https://vignette.wikia.nocookie.net/mrmen/images/1/1a/MR_MESSY_4A.jpg/revision/latest/scale-to-width-down/250?cb=20170730171002',
-        bump: 'https://cdn.shopify.com/s/files/1/0194/0815/8819/t/2/assets/cp-square-mr-bump.jpg?21857',
-        tickle: 'https://metrouk2.files.wordpress.com/2016/08/mrmen1.jpg?resize=540,304'
+        limit: 10
     }
     render() {
         let { users } = this.state;
@@ -58,7 +54,7 @@ class Users extends Component {
                                     <p></p>
                                     Username: {user.username}<br />
                                     Name: {user.name}<br />
-                                    <div>{this.setUrl(user)} </div><br />
+                                    <img className="userImg" alt="avatar icon" src={user.avatar_url} /><br />
                                     <p></p>
                                 </div>
                             </Link>
@@ -77,15 +73,6 @@ class Users extends Component {
                 this.setState({ users: authors })
             })
             .catch(err => console.log(err))
-    }
-    setUrl = (data) => {
-        switch (data.username) {
-            case 'grumpy19': return <img className="userImg" alt="avatar icon" src={this.state.grumpy} />;
-            case 'weegembump': return <img className="userImg" alt="avatar icon" src={this.state.bump} />;
-            case 'cooljmessy': return <img className="userImg" alt="avatar icon" src={this.state.messy} />;
-            case 'tickle122': return <img className="userImg" alt="avatar icon" src={this.state.tickle} />;
-            default: return <img className="userImg" alt="avatar icon" src={data.avatar_url} />
-        }
     }
 }
 

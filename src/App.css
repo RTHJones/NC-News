@@ -85,6 +85,46 @@ background-color: beige;
   font-family: Lobster, monospace;
   color: rgb(224, 202, 202);
 }
+.err {
+  font-family: Lobster, monospace;
+  font-size: 60px;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+  background-color: yellow;
+  color: red;
+}
+.errBox {
+  margin-top: 20px;
+  border: solid grey;
+  background-color: beige;
+  border-width: 5px;
+  border-radius: 5px;
+  width: 30%;
+  margin-left:35%;
+}
+.errCode {
+  font-family: Lobster, monospace;
+  font-size: 60px;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+  margin-top: 0px;
+  padding-top: 0px;
+  background-color: yellow;
+  color: red;
+}
+.errImg {
+  padding-top: 0px;
+  margin-top:0px;
+  max-width: 100%;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+  background-color: black;
+}
+.errMsg {
+  margin-top: 20px;
+  font-size: 20px;
+  padding: 0px;
+}
 h1 {
   font-family: Lobster, monospace;
   font-size: 90px;
