@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import './App.css';
-import Header from './Header';
-import Navbar from './Navbar';
-import Home from './Home';
-import AccountManager from './AccountManager';
-import Articles from './Articles';
-import Article from './Article';
-import Topics from './Topics';
-import Users from './Users';
-import ErrorPage from './ErrorPage';
-import SubmitArticle from './SubmitArticle';
+import Header from './Components/Header';
+import Navbar from './Components/Navbar';
+import Home from './Components/Home';
+import AccountManager from './Components/AccountManager';
+import Articles from './Components/Articles';
+import Article from './Components/Article';
+import Topics from './Components/Topics';
+import Users from './Components/Users';
+import ErrorPage from './Components/ErrorPage';
+import SubmitArticle from './Components/SubmitArticle';
 import { Router, Link } from '@reach/router';
 
 

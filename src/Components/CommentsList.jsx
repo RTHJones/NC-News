@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import * as api from './api'
+import * as api from '../api'
 import Voter from './Voter';
 import moment from 'moment';
 

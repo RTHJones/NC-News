@@ -21,7 +21,7 @@ class Navbar extends Component {
                     { topic: '' }}>
                     <button>Articles</button>
                 </Link>
-                <Link to="/submitArticle" state={
+                <Link to="/submit-article" state={
                     { topic: '' }}>
                     <button>Submit Article</button>
                 </Link>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import * as api from './api';
-import CommentsList from './Components/CommentsList'
+import * as api from '../api';
+import CommentsList from './CommentsList'
 import Voter from './Voter';
 import moment from 'moment';
 import { navigate } from '@reach/router';
