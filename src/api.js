@@ -3,6 +3,14 @@ import axios from 'axios'
 const request = axios.create({ baseURL: 'https://robins-nc-news.herokuapp.com/api' })
 
 
+export const createUser = (username, name, avatar_url) => {
+    return (
+        request
+            .post('/users', { username, name, avatar_url })
+            .then(data => data)
+            .catch(console.dir)
+    )
+}
 export const deleteItem = (id, article) => {
     return (
         request

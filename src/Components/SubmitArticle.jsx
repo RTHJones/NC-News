@@ -34,7 +34,7 @@ class SubmitArticle extends Component {
                         </label>
                         <br />
                         <label>
-                            <textarea rows="10" cols="100" className='articleFormComponent' onChange={(event) => this.handleChange(event, 'body')} name="body" placeholder="Write your article here!" />
+                            <textarea rows="10" cols="60" className='articleFormComponent' onChange={(event) => this.handleChange(event, 'body')} name="body" placeholder="Write your article here!" />
                         </label><br />
                         <button className='articleFormComponent' disabled={!(title && topic && username && body)} onClick={this.handleSubmit}>Create Your Article</button>
                     </form>

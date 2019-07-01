@@ -14,10 +14,11 @@ class Articles extends Component {
         page: 1,
         checked: false,
         totalCount: 0,
-        limit: 10
+        limit: 10,
+        errorMsg: ''
     }
     render() {
-        const { articles, topics, authors, page } = this.state;
+        const { articles, topics, authors, page, errorMsg } = this.state;
         return (
             <div>
                 <div className="articleBar">Filter Articles By:
@@ -49,6 +50,7 @@ class Articles extends Component {
                     {' '}{' '}Reverse Sort Order:<input type="checkbox" onChange={this.handleCheck}></input>
                 </div>
                 <div>
+                    {errorMsg && <div><br />{errorMsg}<br /></div>}
                     {articles && <div >
                         {articles.map(article => {
                             return (
@@ -118,7 +120,10 @@ class Articles extends Component {
         const order = (checked ? 'asc' : 'desc')
         api.fetchArticles(topic, author, sort_by, order, page, limit)
             .then(data => {
-                this.setState({ articles: data.articles, totalCount: data.total_count })
+                this.setState({ articles: data.articles, totalCount: data.total_count, errorMsg: '' })
+                if (!data.articles) {
+                    this.setState({ errorMsg: 'No Articles Found' })
+                }
             })
     }
     handleChange = (event, input) => {
