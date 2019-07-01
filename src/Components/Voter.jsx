@@ -20,7 +20,6 @@ class Voter extends Component {
         this.setState({ voteChange: this.state.voteChange + increment })
         api.vote(id, increment, comment)
             .then(res => {
-                console.log(res)
             })
             .catch(err => console.log(err))
     }

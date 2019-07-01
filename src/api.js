@@ -4,7 +4,6 @@ const request = axios.create({ baseURL: 'https://robins-nc-news.herokuapp.com/ap
 
 
 export const deleteItem = (id, article) => {
-    console.log(id, article)
     return (
         request
             .delete(article ? `/articles/${id}` : `/comments/${id}`)
@@ -46,7 +45,6 @@ export const fetchComments = (id) => {
         request
             .get(`/articles/${id}/comments`)
             .then(({ data }) => {
-                console.log(data.comments)
                 return data.comments
             })
             .catch(err => console.log(err))
@@ -97,7 +95,6 @@ export const vote = (id, increment, comment) => {
         request
             .patch(comment ? `/comments/${id}` : `/articles/${id}`, { inc_votes: increment })
             .then(({ data }) => {
-                console.log(data)
                 return data
             })
             .catch(err => console.log(err))
