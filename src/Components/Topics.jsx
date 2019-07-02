@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import * as api from '../api';
 import { Link } from '@reach/router';
-import topicUrls from '../lookup';
+import * as lookup from '../lookup';
 
 class Topics extends Component {
     state = {
@@ -24,7 +24,7 @@ class Topics extends Component {
                                 <p></p>
                                 <h3 >{topic.slug.charAt(0).toUpperCase() + topic.slug.slice(1)} </h3><br />
                                 {topic.description}
-                                <div><img className="topicImg" alt="topic related img" src={topicUrls[topic.slug]} /></div>
+                                <div><img className="topicImg" alt="topic related img" src={lookup.topicUrls[topic.slug]} /></div>
                                 <p></p><p></p>
                             </div>
                         </Link>

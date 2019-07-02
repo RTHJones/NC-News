@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import * as api from '../api';
 import { Link } from '@reach/router';
+import * as lookup from '../lookup';
 
 
 
@@ -28,7 +29,7 @@ class Users extends Component {
                                     <p></p>
                                     Username: {user.username}<br />
                                     Name: {user.name}<br />
-                                    <img className="userImg" alt="avatar icon" src={user.avatar_url} /><br />
+                                    <img className="userImg" alt="avatar icon" src={user.avatar_url || lookup.userUrls[user.username] || lookup.userUrls.default} /><br />
                                     <p></p>
                                 </div>
                             </Link>
