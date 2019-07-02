@@ -34,7 +34,7 @@ class CommentsList extends Component {
                                 #{comment.comment_id}{` `}By: {comment.author}{` `}<br />
                                 {comment.body}<br />
                                 Created: {moment(comment.created_at).fromNow()}<br />
-                                <Voter comment={true} votes={comment.votes} id={comment.comment_id} />
+                                <Voter comment={true} votes={comment.votes} id={comment.comment_id} loggedIn={this.props.loggedIn} />
                                 {this.props.username === comment.author && <div>
                                     <button className="deleteButton" onClick={() => this.removeItem(comment.comment_id, false)}>Delete This!</button>
                                 </div>}
