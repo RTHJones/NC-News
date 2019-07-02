@@ -15,10 +15,11 @@ class Articles extends Component {
         checked: false,
         totalCount: 0,
         limit: 10,
-        errorMsg: ''
+        errorMsg: '',
+        isLoading: false
     }
     render() {
-        const { articles, topics, authors, page, errorMsg } = this.state;
+        const { articles, topics, authors, page, errorMsg, isLoading } = this.state;
         return (
             <div>
                 <div className="articleBar">Filter Articles By:
@@ -51,6 +52,7 @@ class Articles extends Component {
                 </div>
                 <div>
                     {errorMsg && <div><br />{errorMsg}<br /></div>}
+                    {isLoading && <div>Loading Articles...</div>}
                     {articles && <div >
                         {articles.map(article => {
                             return (
@@ -100,6 +102,7 @@ class Articles extends Component {
                 this.setState({ authors: authors })
             })
             .catch(err => console.log(err))
+        this.setState({ isLoading: true })
         this.getArticles()
     }
     componentDidUpdate(prevProps, prevState) {
@@ -108,7 +111,9 @@ class Articles extends Component {
         const needArticles = prevProps !== this.props || properties.some(property => {
             return prevState[property] !== property
         })
-        if (needArticles) { this.getArticles() }
+        if (needArticles) {
+            this.getArticles()
+        }
     }
     getArticles = () => {
         const { author, sort_by, topic, checked, page, limit } = this.state;
@@ -118,7 +123,7 @@ class Articles extends Component {
                 if (!data) {
                     this.setState({ errorMsg: 'No Articles Found', articles: '' })
                 } else {
-                    this.setState({ articles: data.articles, totalCount: data.total_count, errorMsg: '' })
+                    this.setState({ articles: data.articles, totalCount: data.total_count, errorMsg: '', isLoading: false })
                 }
             })
     }
