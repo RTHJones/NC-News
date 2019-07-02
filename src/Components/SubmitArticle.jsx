@@ -8,7 +8,7 @@ class SubmitArticle extends Component {
         topic: '',
         username: this.props.username,
         body: '',
-        topics: null,
+        topics: '',
     }
     render() {
         const { title, topic, username, body, topics } = this.state;
