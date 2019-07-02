@@ -128,6 +128,9 @@ class Articles extends Component {
             })
     }
     handleChange = (event, input) => {
+        if (input === 'limit') {
+            this.setState({ page: 1 })
+        };
         this.setState({ [input]: event.target.value })
     }
     handleCheck = () => {
