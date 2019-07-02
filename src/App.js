@@ -16,8 +16,8 @@ import * as api from './api';
 
 class App extends Component {
   state = {
-    username: '',
-    loggedIn: false,
+    username: 'jessjelly',
+    loggedIn: true,
     invalidUser: false
   }
   render() {
