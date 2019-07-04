@@ -19,13 +19,13 @@ If you would prefer to run the app from a local machine using an editor such as 
 9. NPM is installed automatically with node, but might be an outdated version. You can ensure that you have the latest version by typing and entering `npm install npm@latest -g`
 10. Once node and npm are installed and up to date, type and enter `npm install react`
 11. Type and enter `npm install @reach/router`
-12. You should now be able to open the webapp in your browser by typing and entering `npm start` from the command line/terminal in the nc-news directory.
+12. You should now be able to open the webapp in your browser by typing and entering `npm start` from the command line/terminal in the nc-news directory.drawn
 
 ## User Guide ##
 
 NB: When you first load the page, you will be automatically logged in as the user 'jessjelly'. This is so you can post articles, add comments to articles, vote on articles and comments, and test the delete function (this works only on articles and comments posted by the user who is currently logged in).
 
-The website will initially load the homepage. It shows a title/header which is clickable and will return you to the homepage from anywhere on the site. The navbar is directly below the header, and contains a series of buttons which will take you to the homepage, the account management page, a users page, topics page, an articles page, or the article submission page. The navbar will also inform the user if they are logged in, and the username of the logged in user. The final button is drawn only if the user is logged in, and will log the user out. If no user is logged in, the information message is clickable, and will take the user to the account management page.
+The website will initially load the homepage. It shows a title/header which is clickable and will return you to the homepage from anywhere on the site. The navbar is directly below the header, and contains a series of buttons which will take you to the homepage, the account management page, a users page, topics page, an articles page, or the article submission page. The navbar will also inform the user if they are logged in, and the username of the logged in user. The final button, 'Log Out', is visible only if the user is logged in. If no user is logged in, a clickable 'User not logged in' message is visible instead. This will take the user to the account management page.
 
 ### Account Management ###
 
