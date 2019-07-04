@@ -10,16 +10,16 @@ If you would prefer to run the app from a local machine using an editor such as 
 
 1. If desired, fork the repository to your own GitHub account.
 2. Use the cd command in your terminal or command line interface to change to the directory into which you wish to copy the files.
-3. Clone the repository to your machine: click the green 'Clone or download' button on the GitHub repository, and copy the link. With git installed, open a terminal, type 'git clone ', then paste the link and press enter. 
-4. Use the cd command to change directory to 'nc-news' by typing 'cd nc-news' and pressing enter.
-5. Open the project in your preferred editor. For VS Code, type 'code .' and press enter.
+3. Clone the repository to your machine: click the green 'Clone or download' button on the GitHub repository, and copy the link. With git installed, open a terminal, type `git clone ` (with a space after 'clone'!), then paste the link and press enter. 
+4. Use the cd command to change directory to 'nc-news' by typing `cd nc-news` and pressing enter.
+5. Open the project in your preferred editor. For VS Code, type `code .` and press enter.
 6. Open a terminal in VS Code by holding ctrl and pressing 'j'
-7. Check if you have node.js or npm installed by typing and entering 'node -v' and 'npm -v' respectively.
-8. If node.js is installed already, you can get the latest version of npm by typing and entering 'npm install npm@latest -g'
-9. If not, go to your root directory then type and enter 'sudo apt-get install nodejs' from your Ubuntu user account with sudo privileges or use the Windows installer at 'nodejs.org'. Please also follow step 7 to ensure the latest version of npm is installed.
-10. Once node and npm are installed, type and enter 'npm install @reach/router'
-11. Type and enter 'npm install react'
-12. You should now be able to open the webapp in your browser by typing and entering 'npm start' from the command line/terminal in the nc-news directory.
+7. Check if you have node.js or npm installed by typing and entering `node -v` and `npm -v` respectively.
+8. If node.js is installed already, you can get the latest version of npm by typing and entering `npm install npm@latest -g`
+9. If not, go to your root directory then type and enter `sudo apt-get install nodejs` from your Ubuntu user account with sudo privileges or use the Windows installer at `nodejs.org`. Please also follow step 7 to ensure the latest version of npm is installed.
+10. Once node and npm are installed, type and enter `npm install @reach/router`
+11. Type and enter `npm install react`
+12. You should now be able to open the webapp in your browser by typing and entering `npm start` from the command line/terminal in the nc-news directory.
 
 ## User Guide ##
 
