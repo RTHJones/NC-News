@@ -71,7 +71,7 @@ class Users extends Component {
     }
     componentDidUpdate = (prevState) => {
         const { sort_by, checked, page, limit } = this.state;
-        const properties = [sort_by, checked, page, limit];
+        const properties = [sort_by];
         const needUsers = properties.some(property => {
             return prevState[property] !== property
         })
