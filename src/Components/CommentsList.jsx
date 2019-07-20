@@ -8,16 +8,21 @@ class CommentsList extends Component {
         comments: null,
         showComments: false,
         userComment: '',
-        loggedInUser: this.props.user
+        loggedInUser: this.props.user,
+        limit: 10,
+        page : 1,
+        sort_by: '',
+        checked : false,
+        totalCount: 0
     }
     render() {
-        const { comments, showComments, userComment } = this.state
+        const { comments, showComments, userComment, limit, page, totalCount } = this.state
         return (
             <div>
                 <div className="commentForm" >
                     <form onSubmit={this.handleSubmit}>
                         <label> Add your comment:
-                        <textarea rows="4" cols="100" onChange={this.handleChange} placeholder="Type your comment here" value={this.state.userComment} />
+                        <textarea rows="4" cols="100" onChange={(event) => this.handleChange(event, userComment)} placeholder="Type your comment here" value={this.state.userComment} />
                         </label>
                         <button disabled={!this.props.loggedIn || userComment === ''}>{this.props.loggedIn ? <>Submit Comment</> : <>Log in to comment!</>}</button>
                     </form>
@@ -26,6 +31,14 @@ class CommentsList extends Component {
                     <img className="speechBubble" alt="a speech bubble" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Comments_alt_font_awesome.svg/2000px-Comments_alt_font_awesome.svg.png" />
                     <p>Click to view comments</p>
                 </div>
+                {showComments && <div className="commentsBar"> Sort Articles By:
+                    <select onChange={(event) => this.handleChange(event, 'sort_by')} defaultValue={null}>
+                        <option value="created_at">Age</option>
+                        <option value="author">Author</option>
+                        <option value="votes">Vote Count</option>
+                    </select>
+                    {' '}{' '}Reverse Sort Order:<input type="checkbox" onChange={this.handleCheck}></input>
+                </div>}
                 {showComments && <div>
                     {comments ? comments.map(comment => {
                         return (
@@ -43,17 +56,67 @@ class CommentsList extends Component {
                         )
                     }) : <div className="commentCard"> <h3>No comments found for article</h3></div>}
                 </div>}
-
+                {showComments && <div className="pageBar">
+                    <button onClick={() => this.changePage(this.prevState, -1)} disabled={page === 1}>Previous Page</button>
+                    Page: {page}
+                    <button onClick={() => this.changePage(this.prevState, 1)} disabled={page >= totalCount / limit}>Next Page</button>
+                    <label>Articles per page
+                        <select value={this.state.limit} onChange={(event) => this.handleChange(event, 'limit')}>
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="20">20</option>
+                        </select>
+                    </label>
+                </div>}
             </div>
         );
     }
-
-    handleChange = (event) => {
-        this.setState({ userComment: event.target.value })
+    changePage = (prevState, input) => {
+        this.setState(prevState => {
+            return ({ page: prevState.page + input })
+        })
+    }
+    componentDidUpdate = (prevProps, prevState) => {
+        console.log(prevProps, '<-- prevProps')
+        console.log(prevState, '<-- prevState')
+        const { totalCount, sort_by, checked, page, limit } = this.state;
+        const properties = [totalCount, sort_by, checked, page, limit];
+        const needComments = prevProps !== this.props || properties.some(property => {
+            return prevState[property] !== property
+        })
+        if (needComments) {
+            this.getComments()
+        }
+    }
+    getComments = () => {
+        const { id } = this.props;
+        const {limit, page, sort_by, checked} = this.state;
+        const order = (checked ? 'asc' : 'desc')
+        api.fetchComments(id)
+            .then(comments => {
+                this.setState({
+                    totalCount: comments.length
+                })
+            })
+            .catch(err => console.log(err));
+        api.fetchComments(id, limit, page, sort_by, order)
+            .then(comments => {
+                this.setState({comments})
+            })
+            .catch(err => console.log(err))
+    }
+    handleChange = (event, input) => {
+        if (input === 'limit') {
+            this.setState({ page: 1 })
+        };
+        this.setState({ [input]: event.target.value })
+    }
+    handleCheck = () => {
+        this.setState({ checked: (this.state.checked ? false : true) })
     }
     handleDelete = () => {
         api.fetchComments(this.props.id)
-            .then(comments => this.setState({ comments }))
+            .then(comments => this.setState({ totalCount: comments.length, comments }))
     }
     handleSubmit = (event) => {
         event.preventDefault();
@@ -71,17 +134,10 @@ class CommentsList extends Component {
             .catch(console.dir)
     }
     toggleComments = () => {
-        const { id } = this.props;
-        api.fetchComments(id)
-            .then(comments => {
-                this.setState({
-                    showComments: (this.state.showComments ? false : true),
-                    comments: comments
-                })
-            })
-            .catch(err => console.log(err))
-
+        this.setState({showComments: (this.state.showComments ? false : true)})
+        if(this.state.showComments) {
+            this.getComments()
+        }
     }
 };
-
 export default CommentsList;

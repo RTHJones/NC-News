@@ -68,10 +68,17 @@ export const fetchAuthors = (sort_by, order, page, limit) => {
             .catch(err => console.log(err))
     )
 }
-export const fetchComments = (id) => {
+export const fetchComments = (id, limit, page, sort_by, order) => {
     return (
         request
-            .get(`/articles/${id}/comments`)
+            .get(`/articles/${id}/comments`, {
+                params : {
+                    sort_by: sort_by,
+                    order: order,
+                    p: page,
+                    limit: limit
+                }
+            })
             .then(({ data }) => {
                 return data.comments
             })
