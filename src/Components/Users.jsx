@@ -69,6 +69,16 @@ class Users extends Component {
     componentDidMount = () => {
         this.getUsers()
     }
+    componentDidUpdate = (prevProps, prevState) => {
+        const { sort_by, checked, page, limit } = this.state;
+        const properties = [sort_by, checked, page, limit];
+        const needUsers = prevProps !== this.props || properties.some(property => {
+            return prevState[property] !== property
+        })
+        if (needUsers) {
+            this.getUsers()
+        }
+    }
     getUsers = () => {
         const { sort_by, checked, page, limit } = this.state;
         const order = (checked ? 'asc' : 'desc')
