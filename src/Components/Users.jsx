@@ -84,7 +84,7 @@ class Users extends Component {
         const order = (checked ? 'asc' : 'desc')
         api.fetchAuthors(sort_by, order, page, limit)
             .then(authors => {
-                this.setState({ users: authors })
+                this.setState({ users: authors, totalCount: authors.length })
             })
             .catch(err => console.log(err))
     }
