@@ -67,7 +67,7 @@ class Users extends Component {
         })
     }
     componentDidMount = () => {
-        // this.getUsers()
+        this.getUsers()
     }
     componentDidUpdate = ( prevState) => {
         const { sort_by, checked, page, limit } = this.state;
@@ -87,15 +87,16 @@ class Users extends Component {
                 console.log(authors.length)
                 this.setState({totalCount: authors.length})
             })
-            .then(
-                api.fetchAuthors(sort_by, order, page, limit)
-                    .then(authors => {
-                        console.log(authors)
-                        this.setState({ users: authors})
-                    })
-                .catch(err => console.log(err))
-            )
             .catch(err => console.dir(err))
+
+            // .then(
+            //     api.fetchAuthors(sort_by, order, page, limit)
+            //         .then(authors => {
+            //             console.log(authors)
+            //             this.setState({ users: authors})
+            //         })
+            //     .catch(err => console.log(err))
+            // )
     }
     handleChange = (event, input) => {
         if (input === 'limit') {
