@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from '@reach/router';
 import * as api from '../api';
+import * as lookup from '../lookup';
 
 class AccountManager extends Component {
     state = {
@@ -8,11 +9,21 @@ class AccountManager extends Component {
         name: '',
         avatarUrl: '',
         newUser: '',
-        searchedName: ''
+        searchedName: '',
+        userData: '',
+        userFound: false,
+        notFoundMsg : false
     }
     render() {
         const { loggedInUser } = this.props;
-        const { username, name, avatarUrl } = this.state
+        const { 
+            username, 
+            name, 
+            avatarUrl, 
+            searchedName, 
+            userData, 
+            userFound, 
+            notFoundMsg } = this.state
         return (
             <div>
                 <h2>Account Manager</h2><br />
@@ -48,20 +59,37 @@ class AccountManager extends Component {
                 <br />
                 <br />
                 Search Users By Username:
-                <input placeholder="username" type="text" name="searchterm"></input><button onClick={() => this.getDetails(this.state.searchedName)}>Search Now</button>
+                <input onChange={(event) => this.handleChange('searchedName', event.target.value)} value={searchedName} placeholder="username" type="text" name="searchterm"></input><button onClick={() => this.getDetails(searchedName)}>Search Now</button>
+                <div>
+                {notFoundMsg && <div>User Not Found</div>}
+                {userFound && <div className="userCard" >
+                                    <p></p>
+                                    Username: {userData.username}<br />
+                                    Name: {userData.name}<br />
+                                    <img className="userImg" alt="avatar icon" src={userData.avatar_url || lookup.userUrls[userData.username] || lookup.userUrls.default} /><br />
+                                    <p></p>
+                                </div>}
+                </div>
             </div >
 
         );
     }
-    getDetails = () => {
-
+    getDetails = (username) => {
+        api.fetchSingleUser(username)
+            .then(
+                userData => {
+                    console.log(userData, '<-- userData')
+                    if(userData) {this.setState({userData: userData, userFound : true, notFoundMsg : false})}
+                    else {this.setState({userData: '', userFound : false, notFoundMsg : true})}
+                }
+            )
+            .catch(console.dir)
     }
     handleSubmit = (event) => {
         const { username, name, avatarUrl } = this.state;
         event.preventDefault()
         api.createUser(username, name, avatarUrl)
             .then(info => {
-                console.log(info)
                 this.setState({ name: '', username: '', avatarUrl: '' })
                 this.props.logIn(info.data["New User Created"].username)
             })

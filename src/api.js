@@ -70,6 +70,16 @@ export const fetchSingleArticle = (id) => {
             .catch(err => console.dir(err))
     )
 }
+export const fetchSingleUser = (username) => {
+    return (
+        request
+            .get(`/users/${username}`)
+            .then(({data}) => {
+                return data
+            })
+            .catch(err => console.dir(err))
+    )
+}
 export const fetchTopics = () => {
     return (
         request
