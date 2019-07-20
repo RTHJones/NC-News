@@ -193,6 +193,16 @@ max-height:10%;
   max-width: 200px;
   max-height: auto;
 }
+.topicForm {
+  border: grey 5px solid;
+  border-radius: 10px;
+  width: 50%;
+  margin-left:25%;
+}
+.topicFormComponent {
+  padding: 5px;
+  margin: 10px;
+}
 .userBar {
   background-color: #a49480;
   border-color: grey;

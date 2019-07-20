@@ -2,6 +2,17 @@ import axios from 'axios'
 
 const request = axios.create({ baseURL: 'https://robins-nc-news.herokuapp.com/api' })
 
+export const createTopic = (slug, description, imgURL) => {
+    return (
+        request
+        .post('./topics', {slug, description} )
+        .then(data => {
+            console.log(data)
+            return data
+        })
+        .catch(console.dir)
+    )
+}
 
 export const createUser = (username, name, avatar_url) => {
     return (

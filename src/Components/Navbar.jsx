@@ -17,6 +17,9 @@ class Navbar extends Component {
                 <Link to="/topics">
                     <button>Topics</button>
                 </Link>
+                <Link to="/create-topic">
+                    <button>Create Topic</button>
+                </Link>
                 <Link to="/articles" state={
                     { topic: '' }}>
                     <button>Articles</button>

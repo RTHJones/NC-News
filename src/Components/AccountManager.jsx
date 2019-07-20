@@ -59,7 +59,9 @@ class AccountManager extends Component {
                 <br />
                 <br />
                 Search Users By Username:
-                <input onChange={(event) => this.handleChange('searchedName', event.target.value)} value={searchedName} placeholder="username" type="text" name="searchterm"></input><button disabled={!searchedName} onClick={() => this.getDetails(searchedName)}>Search Now</button>
+                <input onChange={(event) => this.handleChange('searchedName', event.target.value)} value={searchedName} placeholder="username" type="text" name="searchterm"></input>
+                <button disabled={!searchedName} onClick={() => this.getDetails(searchedName)}>Search Now</button>
+                <button onClick={this.handleReset}>Reset Search</button>
                 <div>
                 {notFoundMsg && <div>User Not Found</div>}
                 {userFound && <div className="userCard" >
@@ -97,6 +99,9 @@ class AccountManager extends Component {
     }
     handleChange = (value, input) => {
         this.setState({ [value]: input })
+    }
+    handleReset = () => {
+        this.setState({userFound : false, userData: '', notFoundMsg: '', searchedName : ''})
     }
 };
 

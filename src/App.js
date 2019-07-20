@@ -7,6 +7,7 @@ import AccountManager from './Components/AccountManager';
 import Articles from './Components/Articles';
 import Article from './Components/Article';
 import Topics from './Components/Topics';
+import CreateTopic from './Components/CreateTopic';
 import Users from './Components/Users';
 import ErrorPage from './Components/ErrorPage';
 import SubmitArticle from './Components/SubmitArticle';
@@ -36,6 +37,7 @@ class App extends Component {
           <Articles path="/articles" username={username} loggedIn={loggedIn} />
           <Article path="/articles/:id" username={username} loggedIn={loggedIn} />
           <Topics path="/topics" />
+          <CreateTopic path="/create-topic" username={username} loggedIn={loggedIn}/>
           <SubmitArticle path='/submit-article' username={username} loggedIn={loggedIn} />
           <ErrorPage default />
         </Router>
