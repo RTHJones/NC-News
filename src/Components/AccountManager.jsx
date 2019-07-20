@@ -64,9 +64,9 @@ class AccountManager extends Component {
                 {notFoundMsg && <div>User Not Found</div>}
                 {userFound && <div className="userCard" >
                                     <p></p>
-                                    Username: {userData.username}<br />
-                                    Name: {userData.name}<br />
-                                    <img className="userImg" alt="avatar icon" src={userData.avatar_url || lookup.userUrls[userData.username] || lookup.userUrls.default} /><br />
+                                    Username: {userData.user.username}<br />
+                                    Name: {userData.user.name}<br />
+                                    <img className="userImg" alt="avatar icon" src={userData.user.avatar_url || lookup.userUrls[userData.user.username] || lookup.userUrls.default} /><br />
                                     <p></p>
                                 </div>}
                 </div>
@@ -79,8 +79,8 @@ class AccountManager extends Component {
             .then(
                 userData => {
                     console.log(userData, '<-- userData')
-                    if(userData) {this.setState({userData: userData, userFound : true, notFoundMsg : false})}
-                    else {this.setState({userData: '', userFound : false, notFoundMsg : true})}
+                    if(userData) {this.setState({searchedName : '', userData: userData, userFound : true, notFoundMsg : false})}
+                    else {this.setState({searchedName : '', userData: '', userFound : false, notFoundMsg : true})}
                 }
             )
             .catch(console.dir)
