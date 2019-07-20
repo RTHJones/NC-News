@@ -75,7 +75,7 @@ class Users extends Component {
         const needUsers = properties.some(property => {
             return prevState[property] !== property
         })
-        console.log(needUsers)
+        console.log(needUsers, '2')
         if (needUsers) {
             this.getUsers()
         }
