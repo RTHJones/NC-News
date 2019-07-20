@@ -67,7 +67,7 @@ class Users extends Component {
         })
     }
     componentDidMount = () => {
-        this.getUsers()
+        // this.getUsers()
     }
     componentDidUpdate = ( prevState) => {
         const { sort_by, checked, page, limit } = this.state;
@@ -84,6 +84,7 @@ class Users extends Component {
         const order = (checked ? 'desc' : 'asc')
         api.fetchAuthors(sort_by, order, page, 100)
             .then(authors => {
+                console.log(authors.length)
                 this.setState({totalCount: authors.length})
             })
             .then(
