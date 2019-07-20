@@ -20,7 +20,7 @@ class Users extends Component {
         return (
             <div>
                 <div className="userBar"> Sort Users By:
-                    <select onChange={(event) => this.handleChange(event, 'sort_by')} defaultValue='username'>
+                    <select onChange={(event) => this.handleChange(event, 'sort_by')} defaultValue={null}>
                         <option value="username">Username</option>
                         <option value="name">Name</option>
                     </select>
