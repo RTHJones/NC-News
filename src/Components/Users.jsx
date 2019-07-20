@@ -20,7 +20,7 @@ class Users extends Component {
         return (
             <div>
                 <div className="userBar"> Sort Users By:
-                    <select onChange={(event) => this.handleChange(event, 'sort_by')} defaultValue={null}>
+                    <select onChange={(event) => this.handleChange(event, 'sort_by')} defaultValue=''>
                         <option value="username">Username</option>
                         <option value="name">Name</option>
                     </select>
@@ -69,13 +69,14 @@ class Users extends Component {
     componentDidMount = () => {
         this.getUsers()
     }
-    componentDidUpdate = ( prevProps, prevState) => {
+    componentDidUpdate = (prevState) => {
         const { sort_by, checked, page, limit } = this.state;
         const properties = [sort_by, checked, page, limit];
-        const needUsers =  prevProps !== this.props || properties.some(property => {
+        const needUsers = properties.some(property => {
             return prevState[property] !== property
         })
-        if (!needUsers) {
+        console.log(needUsers)
+        if (needUsers) {
             this.getUsers()
         }
     }
