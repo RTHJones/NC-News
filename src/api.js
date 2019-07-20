@@ -40,10 +40,17 @@ export const fetchArticles = (topic, author, sort_by, order, page, limit) => {
             .catch(err => console.log(err))
     )
 }
-export const fetchAuthors = () => {
+export const fetchAuthors = (sort_by, order, page, limit) => {
     return (
         request
-            .get(`/users?limit=100`)
+            .get(`/users`, {
+                params : {
+                    sort_by: sort_by,
+                    order: order,
+                    p: page,
+                    limit: limit
+                }
+            })
             .then(({ data }) => {
                 return data.users
             })

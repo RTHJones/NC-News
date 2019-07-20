@@ -10,13 +10,23 @@ class Users extends Component {
         users: null,
         page: 1,
         sort_by: '',
-        limit: 10
+        limit: 5, 
+        checked : false,
+        totalCount: 0,
+        isLoading: false
     }
     render() {
-        const { users } = this.state;
+        const { users, page, isLoading } = this.state;
         return (
             <div>
-
+                <div className="userBar"> Sort Users By:
+                    <select onChange={(event) => this.handleChange(event, 'sort_by')} defaultValue={null}>
+                        <option value="username">Username</option>
+                        <option value="name">Name</option>
+                    </select>
+                    {' '}{' '}Reverse Sort Order:<input type="checkbox" onChange={this.handleCheck}></input>
+                </div>
+                {isLoading && <div>Loading Users List...</div>}
                 <div>
                     {users && users.map(user => {
                         return (
@@ -36,18 +46,46 @@ class Users extends Component {
                         )
                     })}
                 </div>
+                <div className="pageBar">
+                    <button onClick={() => this.changePage(-1)} disabled={this.state.page === 1}>Previous Page</button>
+                    Page: {page}
+                    <button onClick={() => this.changePage(1)} disabled={this.state.page >= this.state.totalCount / this.state.limit}>Next Page</button>
+                    <label>Users per page
+                        <select value={this.state.limit} onChange={(event) => this.handleChange(event, 'limit')}>
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="20">20</option>
+                        </select>
+                    </label>
+                </div>
             </div>
         );
+    }
+    changePage = (input) => {
+        this.setState(prevState => {
+            return ({ page: prevState.page + input })
+        })
     }
     componentDidMount = () => {
         this.getUsers()
     }
     getUsers = () => {
-        api.fetchAuthors()
+        const { sort_by, checked, page, limit } = this.state;
+        const order = (checked ? 'asc' : 'desc')
+        api.fetchAuthors(sort_by, order, page, limit)
             .then(authors => {
                 this.setState({ users: authors })
             })
             .catch(err => console.log(err))
+    }
+    handleChange = (event, input) => {
+        if (input === 'limit') {
+            this.setState({ page: 1 })
+        };
+        this.setState({ [input]: event.target.value })
+    }
+    handleCheck = () => {
+        this.setState({ checked: (this.state.checked ? false : true) })
     }
 }
 
