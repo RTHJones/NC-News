@@ -59,7 +59,7 @@ class AccountManager extends Component {
                 <br />
                 <br />
                 Search Users By Username:
-                <input onChange={(event) => this.handleChange('searchedName', event.target.value)} value={searchedName} placeholder="username" type="text" name="searchterm"></input><button onClick={() => this.getDetails(searchedName)}>Search Now</button>
+                <input onChange={(event) => this.handleChange('searchedName', event.target.value)} value={searchedName} placeholder="username" type="text" name="searchterm"></input><button disabled={!searchedName} onClick={() => this.getDetails(searchedName)}>Search Now</button>
                 <div>
                 {notFoundMsg && <div>User Not Found</div>}
                 {userFound && <div className="userCard" >
