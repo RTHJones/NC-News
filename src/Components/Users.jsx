@@ -72,11 +72,12 @@ class Users extends Component {
     componentDidUpdate = (prevState) => {
         const { sort_by, checked, page, limit } = this.state;
         const properties = [sort_by, checked, page, limit];
+        console.log(properties);
         const needUsers = properties.some(property => {
             console.log(prevState[property], property)
             return prevState[property] !== property
         })
-        console.log(needUsers, '6')
+        console.log(needUsers, '7')
         if (needUsers) {
             this.getUsers()
         }
