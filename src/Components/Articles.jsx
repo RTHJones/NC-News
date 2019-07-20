@@ -122,7 +122,7 @@ class Articles extends Component {
         api.fetchArticles(topic, author, sort_by, order, page, limit)
             .then(data => {
                 if (!data) {
-                    this.setState({ errorMsg: 'No Articles Found', articles: '' })
+                    this.setState({ isLoading: false, errorMsg: 'No Articles Found', articles: '' })
                 } else {
                     this.setState({ articles: data.articles, totalCount: data.total_count, errorMsg: '', isLoading: false })
                 }
