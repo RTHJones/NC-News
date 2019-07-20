@@ -6,11 +6,13 @@ import * as lookup from '../lookup';
 class Topics extends Component {
     state = {
         topics: null,
+        isLoading: true
     }
     render() {
         const { topics } = this.state;
         return (
             <div>
+                {this.state.isLoading && <div>Loading Topics List...</div>}
                 {topics && topics.map(topic => {
                     return (
                         <Link key={topic.slug}
@@ -30,14 +32,13 @@ class Topics extends Component {
                         </Link>
                     )
                 })}
-
             </div>
         );
     }
     componentDidMount = () => {
         api.fetchTopics()
             .then(topics => {
-                this.setState({ topics: topics })
+                this.setState({ topics: topics, isLoading: false })
             })
     }
 }
