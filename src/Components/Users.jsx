@@ -78,7 +78,7 @@ class Users extends Component {
             console.log(prevState[property], property)
             return prevState[property] !== property
         })
-        console.log(needUsers, '8')
+        console.log(needUsers, '9')
         if (needUsers) {
             this.getUsers()
         }
