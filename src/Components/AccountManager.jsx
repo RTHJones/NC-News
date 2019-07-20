@@ -26,7 +26,7 @@ class AccountManager extends Component {
             notFoundMsg } = this.state
         return (
             <div>
-                <h2>Account Manager - netlify liveupdate successful</h2><br />
+                <h2>Account Manager</h2><br />
                 {!loggedInUser && <label>Enter Username to Log In:<input value={this.state.newUser} onChange={(event) => this.handleChange('newUser', event.target.value)} type="text" placeholder="username"></input><button onClick={(event) => {
                     this.props.logIn(this.state.newUser)
                     this.setState({ newUser: '' })
