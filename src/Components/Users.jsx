@@ -20,7 +20,7 @@ class Users extends Component {
         return (
             <div>
                 <div className="userBar"> Sort Users By:
-                    <select onChange={(event) => this.handleChange(event, 'sort_by')} defaultValue={null}>
+                    <select onChange={(event) => this.handleChange(event, 'sort_by')} defaultValue='username'>
                         <option value="username">Username</option>
                         <option value="name">Name</option>
                     </select>
@@ -82,12 +82,19 @@ class Users extends Component {
     getUsers = () => {
         const { sort_by, checked, page, limit } = this.state;
         const order = (checked ? 'desc' : 'asc')
-        api.fetchAuthors(sort_by, order, page, limit)
+        api.fetchAuthors(sort_by, order, page, 100)
             .then(authors => {
-                console.log(authors)
-                this.setState({ users: authors, totalCount: authors.length })
+                this.setState({totalCount: authors.length})
             })
-            .catch(err => console.log(err))
+            .then(
+                api.fetchAuthors(sort_by, order, page, limit)
+                    .then(authors => {
+                        console.log(authors)
+                        this.setState({ users: authors})
+                    })
+                .catch(err => console.log(err))
+            )
+            .catch(err => console.dir(err))
     }
     handleChange = (event, input) => {
         if (input === 'limit') {
