@@ -69,10 +69,10 @@ class Users extends Component {
     componentDidMount = () => {
         this.getUsers()
     }
-    componentDidUpdate = (prevProps, prevState) => {
+    componentDidUpdate = ( prevState) => {
         const { sort_by, checked, page, limit } = this.state;
         const properties = [sort_by, checked, page, limit];
-        const needUsers = prevProps !== this.props || properties.some(property => {
+        const needUsers =  properties.some(property => {
             return prevState[property] !== property
         })
         if (needUsers) {
@@ -81,7 +81,7 @@ class Users extends Component {
     }
     getUsers = () => {
         const { sort_by, checked, page, limit } = this.state;
-        const order = (checked ? 'asc' : 'desc')
+        const order = (checked ? 'desc' : 'asc')
         api.fetchAuthors(sort_by, order, page, limit)
             .then(authors => {
                 console.log(authors)
