@@ -45,13 +45,17 @@ The topics page shows a list of all topics on the site, along with a description
 
 ### 'Create Topics' Page ###
 
+Here a logged-in user can create a new topic. This topic will then appear in the topic page list, and the drop down filter boxes on the articles page, as well as being selectable when a user creates a new article.
+
 ### Articles Page ###
 
 The articles page is accessible by clicking the newspaper image on the homepage, the articles button on the navbar, or by clicking on a user or topic on the appropriate page. There is an additional section to the navbar on the articles page, which enables the user to filter the list of articles by topic and author. These options will be pre-selected if the user has accessed the page from the topics list or users list. The articles may be sorted by age, article ID number (not shown on article), author (if selected, articles are sorted by author but are NOT filtered), vote count, and comment count. The sort order may be reversed by checking the 'Reverse Sort Order' checkbox. Articles may be filtered and sorted by any or all criteria simultaneously, i.e. it is simple and straightforward to search for grumpy19's highest or lowest voted article about football. The article list view does not allow voting or deletion of articles, nor does it show the article body. However the titles are clickable and will take the user to the single article display. At the bottom of the list is the page bar. This bar allows the user to move forward and backwards through the list of articles one page at a time. The number of articles displayed on the page can also be adjusted for preference, however doing so will return the user to page 1.
 
 ### Single Article Page ###
 
-Here, a single article can be viewed. A logged in user may vote up or down, and may add comments by using the box provided. If the article was written by the logged in user, a red 'delete' button will be visible. This will delete the article permanently. A list of all comments on the article can be viewed by clicking the speech bubble below the comment submission box. If a comment is submitted, the list of comments will automatically be made visible with the new comment at the top. Individual comments can be voted up and down, and can be deleted if they were posted by the logged-in user. The comments can be hidden by clicking the speech bubble a second time.
+Here, a single article can be viewed. If the article was written by the logged in user, a red 'delete' button will be visible. This will delete the article permanently, then show a message confirming the delete. The message is clickable and will return the user to the articles view with all filters reset. 
+
+A logged in user may vote articles up or down, and may add comments by using the box provided. If a comment is submitted, the list of comments will automatically be made visible with the new comment at the top. Otherwise, the list of all comments on the article can be viewed by clicking the speech bubble below the comment submission box. Individual comments can be voted up and down, and can be deleted if they were posted by the logged-in user. The comments can be hidden by clicking the speech bubble a second time.
 
 
 ### Article Submission ###
