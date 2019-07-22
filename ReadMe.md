@@ -1,12 +1,12 @@
-# Robin's N.C. News #
+# Developing News #
 
-Hello, and welcome to Robin's N.C. News! Thank you for spending the time to look at my demonstration webapp. 
+Hello, and welcome to 'Developing News'! Thank you for spending the time to look at my demonstration webapp. 
 
 In order to go directly to the hosted webapp on your browser, please use the first link in the 'links' section at the bottom of this page. This will take you to the online version hosted by netlify. Various other links are included for accessing the GitHub repositories and hosted versions of the front and back end files. 
 
 If you would prefer to run the app from a local machine using an editor such as VS Code, please follow the instructions in the next section below.
 
-## Instructions for running Robin's N.C. News on a local machine ##
+## Instructions for running Developing News on a local machine ##
 
 1. If desired, fork the repository to your own GitHub account.
 2. Use the cd command in your terminal or command line interface to change to the directory into which you wish to copy the files.

@@ -28,7 +28,7 @@ class CreateTopic extends Component {
                             Image URL:
                             <input className='topicFormComponent' onChange={(event) => this.handleChange(event, 'imgURL')} type="text" value={imgURL} name="imageURL" placeholder="enter the URL for your chosen image" />
                         </label><br />
-                        <button className='topicFormComponent' disabled={!(slug && description && username)} onClick={this.handleSubmit}>Create New Topic</button>
+                        <button className='topicFormComponent' disabled={!(slug && description && this.props.loggedIn)} onClick={this.handleSubmit}>Create New Topic</button>
 
                     </form>
                 </label>
@@ -40,15 +40,14 @@ class CreateTopic extends Component {
     }
     handleSubmit = (event) => {
         event.preventDefault()
+        console.log(this.props.username)
         let {slug, description, imgURL} = this.state;
-        if(slug && description && this.props.userName) {
             api.createTopic(slug, description, imgURL)
-            .then(data => {
-                console.log(data)
-                this.setState({newTopicData: data, slug : '', description : '', imgURL : ''})
-            })
-            .catch(err => console.log(err))
-        }
+                .then(data => {
+                    console.log(data)
+                    this.setState({newTopicData: data, slug : '', description : '', imgURL : ''})
+                })
+                .catch(err => console.log(err))
     }
 }
 
