@@ -10,6 +10,7 @@ class Topics extends Component {
     }
     render() {
         const { topics } = this.state
+        console.log(topics)
         return (
             <div>
                 {this.state.isLoading && <div>Loading Topics List...</div>}
@@ -27,7 +28,7 @@ class Topics extends Component {
                                 <p></p>
                                 <h3 >{topic.slug.charAt(0).toUpperCase() + topic.slug.slice(1)} </h3><br />
                                 {topic.description}
-                                <div><img className="topicImg" alt="topic related img" src={topic.imgURL} /></div>
+                                <div><img className="topicImg" alt="topic related img" src={topic.imgURL|| lookup.topicUrls.default} /></div>
                                 <p></p><p></p>
                             </div>
                         </Link>
