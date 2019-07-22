@@ -3,18 +3,24 @@ import * as api from '../api';
 import CommentsList from './CommentsList'
 import Voter from './Voter';
 import moment from 'moment';
-import { navigate } from '@reach/router';
+import { Link, navigate } from '@reach/router';
 
 class Article extends Component {
     state = {
         article: null,
-        isLoading: true
+        isLoading: true,
+        recentDelete: false
     }
     render() {
-        const { article, isLoading } = this.state
+        const { article, isLoading, recentDelete } = this.state
         if (isLoading) return <p>...Loading</p>
         return (
             <div>
+                {recentDelete && <div>
+                <Link to="/articles">
+                    Article Deleted. Click here to return to articles page.
+                </Link>
+                </div>}
                 {article && <div className="articleTile">
                     <h3> {article.title}</h3><br />
                     Author: {article.author}<br />
@@ -27,7 +33,7 @@ class Article extends Component {
                         <button className="deleteButton" onClick={() => this.removeItem(article.article_id, true)}>Delete This!</button>
                     </div>}
                 </div>}
-                <CommentsList loggedIn={this.props.loggedIn} username={this.props.username} id={this.props.id} />
+                    {!recentDelete && <div><CommentsList loggedIn={this.props.loggedIn} username={this.props.username} id={this.props.id} /></div> }
             </div >
         );
     };
@@ -41,7 +47,7 @@ class Article extends Component {
             })
     }
     handleDelete = () => {
-        navigate(`/articles`)
+        this.setState({recentDelete: true, article: ''})
     }
     removeItem = (id, article) => {
         api.deleteItem(id, article)
