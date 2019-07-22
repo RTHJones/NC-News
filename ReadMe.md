@@ -25,15 +25,25 @@ If you would prefer to run the app from a local machine using an editor such as 
 
 NB: When you first load the page, you will be automatically logged in as the user 'jessjelly'. This is so you can post articles, add comments to articles, vote on articles and comments, and test the delete function (this works only on articles and comments posted by the user who is currently logged in).
 
-The website will initially load the homepage. It shows a title/header which is clickable and will return you to the homepage from anywhere on the site. The navbar is directly below the header, and contains a series of buttons which will take you to the homepage, the account management page, a users page, topics page, an articles page, or the article submission page. The navbar will also inform the user if they are logged in, and the username of the logged in user. The final button, 'Log Out', is visible only if the user is logged in. If no user is logged in, a clickable 'User not logged in' message is visible instead. This will take the user to the account management page.
+The website will initially load the homepage. It shows a title/header which is clickable and will return you to the homepage from anywhere on the site. The navbar is directly below the header, and contains a series of buttons which will take you to the homepage, the account management page labelled 'my account', a users page, topics page, a 'create topic' form, an articles page, or the article submission page. The navbar will also inform the user if they are logged in, and the username of the logged in user. The final button, 'Log Out', is visible only if the user is logged in. If no user is logged in, a clickable 'User not logged in' message is visible instead. This will take the user to the account management page.
+
 
 ### Account Management ###
 
-Here the user may log in (if not already logged in) by entering a username. Alternatively, a new user can be created here by filling in a username, name, and optional URL for an avatar image. A list of all users may be accessed by clicking the relevant button. The users list is clickable. Clicking here will take the user to the articles page, and will show articles written by the user selected.
+Here the user may log in (if not already logged in) by entering a username. Alternatively, a new user can be created here by filling in a username, name, and optional URL for an avatar image - the user will automatically be logged in as the newly created username. A list of all users may be accessed by clicking the 'Show All Users' button, which will take the user to the same 'users' page as the navbar button. A search feature has been included to allow the user to check a specific username exists before attempting to log in as that user. The search box and results may be reset at any time by clicking the reset button.
+
+
+### Users Page ###
+
+The users list is clickable. Clicking here will take the user to the articles page, and will show articles written by the user selected. Users may be sorted by name or username, and the order of display can be reversed by checking the checkbox (in the sorting bar below the navbar). Results are paginated with a default setting of 5 users per page.
+
 
 ### Topics Page ###
 
-The topics page shows a list of all topics on the site, along with a description and picture appropriate to the topic. The entries here are also clickable and will take the user to the articles page, showing articles on the selected topic.
+The topics page shows a list of all topics on the site, along with a description and for some topics, a picture appropriate to the topic. The entries here are also clickable and will take the user to the articles page, showing articles on the selected topic.
+
+
+### 'Create Topics' Page ###
 
 ### Articles Page ###
 

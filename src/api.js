@@ -13,7 +13,6 @@ export const createTopic = (slug, description, imgURL) => {
         .catch(console.dir)
     )
 }
-
 export const createUser = (username, name, avatar_url) => {
     return (
         request
@@ -79,10 +78,8 @@ export const fetchComments = (id, limit, page, sort_by, order) => {
                     limit: limit
                 }
             })
-            .then(({ data }) => {
-                return data.comments
-            })
-            .catch(err => console.log(err))
+            .then(({ data }) => {return data.comments})
+            .catch(err => console.dir(err))
     )
 }
 export const fetchSingleArticle = (id) => {

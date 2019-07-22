@@ -13,7 +13,7 @@ class Article extends Component {
     }
     render() {
         const { article, isLoading, recentDelete } = this.state
-        if (isLoading) return <p>...Loading</p>
+        if (isLoading) return <p>Loading...</p>
         return (
             <div>
                 {recentDelete && <div>

@@ -99,14 +99,14 @@ class CommentsList extends Component {
         const order = (checked ? 'asc' : 'desc')
         api.fetchComments(id)
             .then(comments => {
-                this.setState({
-                    totalCount: comments.length
-                })
+                if(comments) {this.setState({
+                    totalCount: comments.length || 0
+                })}
             })
             .catch(err => console.log(err));
         api.fetchComments(id, limit, page, sort_by, order)
             .then(comments => {
-                this.setState({comments})
+                if(comments) this.setState({comments})
             })
             .catch(err => console.log(err))
     }

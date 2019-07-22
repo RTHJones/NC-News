@@ -76,9 +76,7 @@ class Users extends Component {
         const needUsers = properties.some(property => {
             return prevState[propertyNames[properties.indexOf(property)]] !== property
         })
-        console.log('needUsers = ', needUsers)
         if (needUsers) {
-            console.log('getting users');
             this.getUsers()
         }
     }
@@ -87,13 +85,11 @@ class Users extends Component {
         const order = (checked ? 'desc' : 'asc')
         api.fetchAuthors('', order, 1, 100)
             .then(authors => {
-                console.log(authors.length, 'number of Authors')
                 this.setState({totalCount: authors.length})
             })
             .catch(err => console.dir(err)) 
         api.fetchAuthors(sort_by, order, page, limit)
             .then(authors => {
-                console.log(authors, 'list of authors')
                 this.setState({ users: authors})
             })
             .catch(err => console.log(err))

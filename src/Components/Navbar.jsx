@@ -14,6 +14,9 @@ class Navbar extends Component {
                 <Link to="/accounts">
                     <button>My Account</button>
                 </Link>
+                <Link to="/accounts/users">
+                    <button>Users</button>
+                </Link>
                 <Link to="/topics">
                     <button>Topics</button>
                 </Link>
