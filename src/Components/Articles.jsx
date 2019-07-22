@@ -106,11 +106,11 @@ class Articles extends Component {
         this.getArticles()
     }
     componentDidUpdate(prevProps, prevState) {
-        console.log(prevState)
         const { author, topic, sort_by, checked, page, limit } = this.state;
         const properties = [author, topic, sort_by, checked, page, limit];
+        const propertyNames = ['author', 'topic', 'sort_by', 'checked', 'page', 'limit']
         const needArticles = prevProps !== this.props || properties.some(property => {
-            return prevState[property] !== property
+            return prevState[propertyNames[properties.indexOf(property)]] !== property
         })
         if (needArticles) {
             this.getArticles()

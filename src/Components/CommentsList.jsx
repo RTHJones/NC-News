@@ -22,7 +22,7 @@ class CommentsList extends Component {
                 <div className="commentForm" >
                     <form onSubmit={this.handleSubmit}>
                         <label> Add your comment:
-                        <textarea rows="4" cols="100" onChange={(event) => this.handleChange(event, userComment)} placeholder="Type your comment here" value={this.state.userComment} />
+                        <textarea rows="4" cols="100" onChange={(event) => this.handleChange(event, 'userComment')} placeholder="Type your comment here" value={this.state.userComment} />
                         </label>
                         <button disabled={!this.props.loggedIn || userComment === ''}>{this.props.loggedIn ? <>Submit Comment</> : <>Log in to comment!</>}</button>
                     </form>
@@ -31,7 +31,7 @@ class CommentsList extends Component {
                     <img className="speechBubble" alt="a speech bubble" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Comments_alt_font_awesome.svg/2000px-Comments_alt_font_awesome.svg.png" />
                     <p>Click to view comments</p>
                 </div>
-                {showComments && <div className="commentsBar"> Sort Articles By:
+                {showComments && <div className="commentsBar"> Sort Comments By:
                     <select onChange={(event) => this.handleChange(event, 'sort_by')} defaultValue={null}>
                         <option value="created_at">Age</option>
                         <option value="author">Author</option>
@@ -60,7 +60,7 @@ class CommentsList extends Component {
                     <button onClick={() => this.changePage(this.prevState, -1)} disabled={page === 1}>Previous Page</button>
                     Page: {page}
                     <button onClick={() => this.changePage(this.prevState, 1)} disabled={page >= totalCount / limit}>Next Page</button>
-                    <label>Articles per page
+                    <label>Comments per page
                         <select value={this.state.limit} onChange={(event) => this.handleChange(event, 'limit')}>
                             <option value="5">5</option>
                             <option value="10">10</option>
@@ -81,12 +81,17 @@ class CommentsList extends Component {
         console.log(prevState, '<-- prevState')
         const { totalCount, sort_by, checked, page, limit } = this.state;
         const properties = [totalCount, sort_by, checked, page, limit];
+        const propertyNames = ['totalCount', 'sort_by', 'checked', 'page', 'limit']
         const needComments = prevProps !== this.props || properties.some(property => {
-            return prevState[property] !== property
+            return prevState[propertyNames[properties.indexOf(property)]] !== property
         })
+        console.log(needComments, '<-- need Comments?')
         if (needComments) {
             this.getComments()
         }
+    }
+    componentDidMount = () => {
+        this.getComments()
     }
     getComments = () => {
         const { id } = this.props;

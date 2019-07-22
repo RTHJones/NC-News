@@ -69,38 +69,34 @@ class Users extends Component {
     componentDidMount = () => {
         this.getUsers()
     }
-    componentDidUpdate = (prevState) => {
-        console.log(prevState)
+    componentDidUpdate = (prevProps, prevState) => {
         const { sort_by, checked, page, limit } = this.state;
         const properties = [sort_by, checked, page, limit];
-        console.log(properties);
+        const propertyNames = ['sort_by', 'checked', 'page', 'limit']
         const needUsers = properties.some(property => {
-            console.log(prevState[property], property)
-            return prevState[property] !== property
+            return prevState[propertyNames[properties.indexOf(property)]] !== property
         })
-        console.log(needUsers, '9')
+        console.log('needUsers = ', needUsers)
         if (needUsers) {
+            console.log('getting users');
             this.getUsers()
         }
     }
     getUsers = () => {
         const { sort_by, checked, page, limit } = this.state;
         const order = (checked ? 'desc' : 'asc')
-        api.fetchAuthors(sort_by, order, page, 100)
+        api.fetchAuthors('', order, 1, 100)
             .then(authors => {
-                console.log(authors.length)
+                console.log(authors.length, 'number of Authors')
                 this.setState({totalCount: authors.length})
             })
-            .catch(err => console.dir(err))
-
-            // .then(
-            //     api.fetchAuthors(sort_by, order, page, limit)
-            //         .then(authors => {
-            //             console.log(authors)
-            //             this.setState({ users: authors})
-            //         })
-            //     .catch(err => console.log(err))
-            // )
+            .catch(err => console.dir(err)) 
+        api.fetchAuthors(sort_by, order, page, limit)
+            .then(authors => {
+                console.log(authors, 'list of authors')
+                this.setState({ users: authors})
+            })
+            .catch(err => console.log(err))
     }
     handleChange = (event, input) => {
         if (input === 'limit') {

@@ -10,7 +10,7 @@ class CreateTopic extends Component {
         newTopicData: ''
     }
     render() {
-        const {slug, description, imgURL, username, loggedIn} = this.state
+        const {slug, description, imgURL, username} = this.state
         return (
             <div>
                 <h2>Topic Creation Form</h2>
