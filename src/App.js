@@ -22,8 +22,7 @@ class App extends Component {
     invalidUser: false
   }
   render() {
-    let username = this.state.username
-    let loggedIn = this.state.loggedIn
+    let { username, loggedIn }  = this.state;
     return (
       <div className="App">
         <Link to="/">
