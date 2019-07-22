@@ -9,11 +9,12 @@ class Topics extends Component {
         isLoading: true
     }
     render() {
-        const { topics } = this.state;
+        const { topics } = this.state
         return (
             <div>
                 {this.state.isLoading && <div>Loading Topics List...</div>}
                 {topics && topics.map(topic => {
+                    console.log(topic)
                     return (
                         <Link key={topic.slug}
                             to={`/articles`}
@@ -26,7 +27,7 @@ class Topics extends Component {
                                 <p></p>
                                 <h3 >{topic.slug.charAt(0).toUpperCase() + topic.slug.slice(1)} </h3><br />
                                 {topic.description}
-                                <div><img className="topicImg" alt="topic related img" src={lookup.topicUrls[topic.slug]} /></div>
+                                <div><img className="topicImg" alt="topic related img" src={topic.imgURL} /></div>
                                 <p></p><p></p>
                             </div>
                         </Link>
