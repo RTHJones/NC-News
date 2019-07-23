@@ -10,12 +10,10 @@ class Topics extends Component {
     }
     render() {
         const { topics } = this.state
-        console.log(topics)
         return (
             <div>
                 {this.state.isLoading && <div>Loading Topics List...</div>}
                 {topics && topics.map(topic => {
-                    console.log(topic)
                     return (
                         <Link key={topic.slug}
                             to={`/articles`}

@@ -80,7 +80,6 @@ class AccountManager extends Component {
         api.fetchSingleUser(username)
             .then(
                 userData => {
-                    console.log(userData, '<-- userData')
                     if(userData) {this.setState({searchedName : '', userData: userData, userFound : true, notFoundMsg : false})}
                     else {this.setState({searchedName : '', userData: '', userFound : false, notFoundMsg : true})}
                 }

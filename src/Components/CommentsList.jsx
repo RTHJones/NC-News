@@ -77,15 +77,12 @@ class CommentsList extends Component {
         })
     }
     componentDidUpdate = (prevProps, prevState) => {
-        console.log(prevProps, '<-- prevProps')
-        console.log(prevState, '<-- prevState')
         const { totalCount, sort_by, checked, page, limit } = this.state;
         const properties = [totalCount, sort_by, checked, page, limit];
         const propertyNames = ['totalCount', 'sort_by', 'checked', 'page', 'limit']
         const needComments = prevProps !== this.props || properties.some(property => {
             return prevState[propertyNames[properties.indexOf(property)]] !== property
         })
-        console.log(needComments, '<-- need Comments?')
         if (needComments) {
             this.getComments()
         }

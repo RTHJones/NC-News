@@ -40,11 +40,9 @@ class CreateTopic extends Component {
     }
     handleSubmit = (event) => {
         event.preventDefault()
-        console.log(this.props.username)
         let {slug, description, imgURL} = this.state;
             api.createTopic(slug, description, imgURL)
                 .then(data => {
-                    console.log(data)
                     this.setState({newTopicData: data, slug : '', description : '', imgURL : ''})
                 })
                 .catch(err => console.log(err))
