@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import * as api from '../api';
 import { Link } from '@reach/router';
 import * as lookup from '../lookup';
+import * as utils from '../utils';
 
 class Topics extends Component {
     state = {
@@ -24,7 +25,7 @@ class Topics extends Component {
                             < div className="topicCard">
                                 <p></p>
                                 <p></p>
-                                <h3 >{topic.slug.charAt(0).toUpperCase() + topic.slug.slice(1)} </h3><br />
+                                <h3 >{utils.capitaliseFirstLetter(topic.slug)} </h3><br />
                                 {topic.description}
                                 <div><img className="topicImg" alt="topic related img" src={topic.imgURL|| lookup.topicUrls.default} /></div>
                                 <p></p><p></p>
