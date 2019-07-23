@@ -5,7 +5,7 @@ const request = axios.create({ baseURL: 'https://robins-nc-news.herokuapp.com/ap
 export const createTopic = (slug, description, imgURL) => {
     return (
         request
-        .post('./topics', {slug, description} )
+        .post('./topics', {slug, description, imgURL} )
         .then(data => {
             console.log(data)
             return data
