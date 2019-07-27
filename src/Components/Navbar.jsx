@@ -8,32 +8,32 @@ class Navbar extends Component {
     render() {
         return (
             <div className="navbar">
+                {!this.props.loggedIn && <Link to='/accounts'><>{' '}User not logged in</></Link>}
+                {this.props.loggedIn && <>____logged in as: {this.props.username}____</>}
                 <Link to="/">
-                    <button>Home</button>
+                    <button className="navButton">Home</button>
                 </Link>
                 <Link to="/accounts">
-                    <button>My Account</button>
+                    <button className="navButton">My Account</button>
                 </Link>
                 <Link to="/accounts/users">
-                    <button>Users</button>
+                    <button className="navButton">Users</button>
                 </Link>
                 <Link to="/topics">
-                    <button>Topics</button>
+                    <button className="navButton">Topics</button>
                 </Link>
                 <Link to="/create-topic">
-                    <button>Create Topic</button>
+                    <button className="navButton">Create Topic</button>
                 </Link>
                 <Link to="/articles" state={
                     { topic: '' }}>
-                    <button>Articles</button>
+                    <button className="navButton">Articles</button>
                 </Link>
                 <Link to="/submit-article" state={
                     { topic: '' }}>
-                    <button>Submit Article</button>
+                    <button className="navButton" >Submit Article</button>
                 </Link>
-                {!this.props.loggedIn && <Link to='/accounts'><>{' '}User not logged in</></Link>}
-                {this.props.loggedIn && <>____logged in as: {this.props.username}____
-                <button onClick={() => this.props.logOut()}>Log Out</button></>}
+                <button onClick={() => this.props.logOut()}>Log Out</button>
             </div>
         );
     };

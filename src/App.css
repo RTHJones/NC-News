@@ -32,20 +32,29 @@
   }
 }
 .articleBar {
-    background-color: #a49480;
-    border-color: grey;
-    border-style: solid;
-    border-width: 1px 2px 1px 2px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: stretch;
+  align-items: stretch;
+  background-color: #a49480;
+  border-color: grey;
+  border-style: solid;
+  border-width: 1px 2px 1px 2px;
+}
+.articleBarItem {
+  flex-grow: 0;
+  flex-shrink: 1;
 }
 .articleCard {
-border-top: 1px;
-border-left: 2px;
-border-bottom: 1px;
-border-right: 2px;
-border-color: grey;
-border-style: solid;
-border-radius: 1px;
-background-color: beige;
+  border-top: 1px;
+  border-left: 2px;
+  border-bottom: 1px;
+  border-right: 2px;
+  border-color: grey;
+  border-style: solid;
+  border-radius: 1px;
+  background-color: beige;
 }
 .articleForm {
   border: grey 5px solid;
@@ -127,7 +136,7 @@ background-color: beige;
 }
 h1 {
   font-family: Lobster, monospace;
-  font-size: 90px;
+  font-size: 7vmax;
   margin-bottom: 0px;
   margin-top: 0px;
   background-color: beige;
@@ -140,7 +149,7 @@ h1 {
 
 }
 h1:link {
-text-decoration: none
+  text-decoration: none
 }
 h2 {
   font-size: 60px;
@@ -164,10 +173,19 @@ h3 {
   border-radius: 10px;
 }
 .navbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: stretch;
+  align-items: stretch;
   background-color: #a49480;
   border-color: grey;
   border-style: solid;
   border-width: 2px 2px 1px 2px;
+}
+.navButton {
+  flex-grow: 1;
+  flex-shrink: 1;
 }
 .pageBar {
   background-color: #a49480;
@@ -176,8 +194,8 @@ h3 {
   border-width: 1px 2px 2px 2px;
 }
 .speechBubble {
-max-width: 10%;
-max-height:10%;
+  max-width: 10%;
+  max-height:10%;
   padding: 0px;
   margin: 0px;
 }
