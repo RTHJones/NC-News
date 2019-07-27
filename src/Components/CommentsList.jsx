@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import * as api from '../api'
 import Voter from './Voter';
 import moment from 'moment';
+import Deleter from './Deleter';
+import Paginator from './Paginator';
 
 class CommentsList extends Component {
     state = {
@@ -48,15 +50,14 @@ class CommentsList extends Component {
                                 {comment.body}<br />
                                 Created: {moment(comment.created_at).fromNow()}<br />
                                 <Voter comment={true} votes={comment.votes} id={comment.comment_id} loggedIn={this.props.loggedIn} />
-                                {this.props.username === comment.author && <div>
-                                    <button className="deleteButton" onClick={() => this.removeItem(comment.comment_id, false)}>Delete This!</button>
-                                </div>}
+                                <Deleter username={this.props.username} author={comment.author} id={comment.comment_id} article={false} handleDelete={this.handleDelete}/>
                                 <p></p>
                             </div>
                         )
                     }) : <div className="commentCard"> <h3>No comments found for article</h3></div>}
                 </div>}
-                {showComments && <div className="pageBar">
+                <Paginator showPaginator={showComments} limit={limit} page={page} totalCount={totalCount} handleChange={this.handleChange} changePage={this.changePage} prevState={this.prevState}/>
+                {/* {showComments && <div className="pageBar">
                     <button onClick={() => this.changePage(this.prevState, -1)} disabled={page === 1}>Previous Page</button>
                     Page: {page}
                     <button onClick={() => this.changePage(this.prevState, 1)} disabled={page >= totalCount / limit}>Next Page</button>
@@ -67,7 +68,7 @@ class CommentsList extends Component {
                             <option value="20">20</option>
                         </select>
                     </label>
-                </div>}
+                </div>} */}
             </div>
         );
     }
@@ -127,13 +128,6 @@ class CommentsList extends Component {
                 .then(() => api.fetchComments(this.props.id))
                 .then((comments) => this.setState({ comments: comments, userComment: '', showComments: true }));
         }
-    }
-    removeItem = (id, article) => {
-        api.deleteItem(id, article)
-            .then(data => {
-                this.handleDelete()
-            })
-            .catch(console.dir)
     }
     toggleComments = () => {
         this.setState({showComments: (this.state.showComments ? false : true)})

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import * as api from '../api'
 import { Link } from '@reach/router';
 import moment from 'moment';
+import Paginator from './Paginator';
 
 class Articles extends Component {
     state = {
@@ -19,7 +20,7 @@ class Articles extends Component {
         isLoading: false
     }
     render() {
-        const { articles, topics, authors, page, errorMsg, isLoading } = this.state;
+        const { articles, topics, authors, page, limit, totalCount, errorMsg, isLoading } = this.state;
         return (
             <div>
                 <div className="articleBar">
@@ -75,7 +76,8 @@ class Articles extends Component {
                     </div>
                     }
                 </div>
-                <div className="pageBar">
+                <Paginator showPaginator={true} limit={limit} page={page} totalCount={totalCount} handleChange={this.handleChange} changePage={this.changePage} prevState={this.prevState}/>
+                {/* <div className="pageBar">
                     <button onClick={() => this.changePage(this.prevState, -1)} disabled={this.state.page === 1}>Previous Page</button>
                     Page: {page}
                     <button onClick={() => this.changePage(this.prevState, 1)} disabled={this.state.page >= this.state.totalCount / this.state.limit}>Next Page</button>
@@ -86,7 +88,7 @@ class Articles extends Component {
                             <option value="20">20</option>
                         </select>
                     </label>
-                </div>
+                </div> */}
             </div >
         );
     }
