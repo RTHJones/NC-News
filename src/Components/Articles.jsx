@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import * as api from '../api'
 import { Link } from '@reach/router';
 import moment from 'moment';
+import Paginator from './Paginator';
 
 class Articles extends Component {
     state = {
@@ -19,36 +20,39 @@ class Articles extends Component {
         isLoading: false
     }
     render() {
-        const { articles, topics, authors, page, errorMsg, isLoading } = this.state;
+        const { articles, topics, authors, page, limit, totalCount, errorMsg, isLoading } = this.state;
         return (
             <div>
-                <div className="articleBar">Filter Articles By:
-                <select value={this.state.topic} onChange={(event) => {
-                        this.handleChange(event, 'topic')
-                    }}>
-                        <option value='' >Topic</option>
-                        {topics && topics.map(topic => {
-                            return <option key={topic.slug} value={topic.slug}>{topic.slug.charAt(0).toUpperCase() + topic.slug.slice(1)}</option>
-                        })}
-                    </select>
-                    <select value={this.state.author} onChange={(event) => {
-                        this.handleChange(event, 'author')
-                    }}>
-                        <option value=''>Author</option>
-                        {authors &&
-                            authors.map(author => {
-                                return <option key={author.username} value={author.username}>{author.username}</option>
-                            })
-                        }
-                    </select> Sort Articles By:
-                    <select onChange={(event) => this.handleChange(event, 'sort_by')} defaultValue={null}>
-                        <option value="">Age</option>
-                        <option value="article_id">Article ID</option>
-                        <option value="author">Author</option>
-                        <option value="votes">Vote Count</option>
-                        <option value="comment_count">Comment Count</option>
-                    </select>
-                    {' '}{' '}Reverse Sort Order:<input type="checkbox" onChange={this.handleCheck}></input>
+                <div className="articleBar">
+                    <div className="articleBarItem" >Filter Articles By:
+                        <select value={this.state.topic} onChange={(event) => {
+                            this.handleChange(event, 'topic')
+                        }}>
+                            <option value='' >Topic</option>
+                                {topics && topics.map(topic => {
+                                    return <option key={topic.slug} value={topic.slug}>{topic.slug.charAt(0).toUpperCase() + topic.slug.slice(1)}</option>
+                                })}
+                        </select>
+                        <select value={this.state.author} onChange={(event) => {
+                            this.handleChange(event, 'author')
+                        }}>
+                            <option value=''>Author</option>
+                                {authors && authors.map(author => {
+                                    return <option key={author.username} value={author.username}>{author.username}</option>
+                                })}
+                        </select > 
+                    </div>
+                    <div className="articleBarItem" >Sort Articles By:
+                        <select onChange={(event) => this.handleChange(event, 'sort_by')} defaultValue={null}>
+                            <option value="">Age</option>
+                            <option value="article_id">Article ID</option>
+                            <option value="author">Author</option>
+                            <option value="votes">Vote Count</option>
+                            <option value="comment_count">Comment Count</option>
+                        </select>
+                    </div>
+                    <div className="articleBarItem">
+                    {' '}{' '}Reverse Sort Order:<input type="checkbox" onChange={this.handleCheck}></input></div>
                 </div>
                 <div>
                     {errorMsg && <div><br />{errorMsg}<br /></div>}
@@ -58,7 +62,8 @@ class Articles extends Component {
                             return (
                                 <div className="articleCard" key={article.title}>
                                     <Link to={`/articles/${article.article_id}`}>
-                                        <h3> {article.title}</h3></Link><br />
+                                        <h3> {article.title}</h3>
+                                    </Link><br />
                                     By: {article.author}<br />
                                     Topic: {article.topic}<br />
                                     Votes:  {article.votes}<br />
@@ -71,7 +76,8 @@ class Articles extends Component {
                     </div>
                     }
                 </div>
-                <div className="pageBar">
+                <Paginator showPaginator={true} limit={limit} page={page} totalCount={totalCount} handleChange={this.handleChange} changePage={this.changePage} prevState={this.prevState}/>
+                {/* <div className="pageBar">
                     <button onClick={() => this.changePage(this.prevState, -1)} disabled={this.state.page === 1}>Previous Page</button>
                     Page: {page}
                     <button onClick={() => this.changePage(this.prevState, 1)} disabled={this.state.page >= this.state.totalCount / this.state.limit}>Next Page</button>
@@ -82,7 +88,7 @@ class Articles extends Component {
                             <option value="20">20</option>
                         </select>
                     </label>
-                </div>
+                </div> */}
             </div >
         );
     }

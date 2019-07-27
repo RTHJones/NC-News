@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import * as api from '../api';
 import { Link } from '@reach/router';
 import * as lookup from '../lookup';
+import Paginator from './Paginator';
 
 
 
 class Users extends Component {
     state = {
-        users: null,
+        users: '',
         page: 1,
         sort_by: null,
         limit: 5, 
@@ -16,7 +17,7 @@ class Users extends Component {
         isLoading: false
     }
     render() {
-        const { users, page, isLoading } = this.state;
+        const { users, page, limit, totalCount, isLoading } = this.state;
         return (
             <div>
                 <div className="userBar"> Sort Users By:
@@ -46,22 +47,11 @@ class Users extends Component {
                         )
                     })}
                 </div>
-                <div className="pageBar">
-                    <button onClick={() => this.changePage(-1)} disabled={this.state.page === 1}>Previous Page</button>
-                    Page: {page}
-                    <button onClick={() => this.changePage(1)} disabled={this.state.page >= this.state.totalCount / this.state.limit}>Next Page</button>
-                    <label>Users per page
-                        <select value={this.state.limit} onChange={(event) => this.handleChange(event, 'limit')}>
-                            <option value="5">5</option>
-                            <option value="10">10</option>
-                            <option value="20">20</option>
-                        </select>
-                    </label>
-                </div>
+                <Paginator showPaginator={true} limit={limit} page={page} totalCount={totalCount} handleChange={this.handleChange} changePage={this.changePage} prevState={this.prevState}/>
             </div>
         );
     }
-    changePage = (input) => {
+    changePage = (prevState, input) => {
         this.setState(prevState => {
             return ({ page: prevState.page + input })
         })

@@ -3,6 +3,7 @@ import * as api from '../api';
 import CommentsList from './CommentsList'
 import Voter from './Voter';
 import moment from 'moment';
+import Deleter from './Deleter';
 import { Link, navigate } from '@reach/router';
 
 class Article extends Component {
@@ -29,9 +30,7 @@ class Article extends Component {
                     Comment Count: {article.comment_count}<br />
                     Created: {moment(article.created_at).fromNow()}<br />
                     <Voter loggedIn={this.props.loggedIn} comment={false} votes={article.votes} id={article.article_id} />
-                    {this.props.username === article.author && <div>
-                        <button className="deleteButton" onClick={() => this.removeItem(article.article_id, true)}>Delete This!</button>
-                    </div>}
+                    <Deleter username={this.props.username} id={article.article_id} article={true} author={article.author} handleDelete={this.handleDelete}/>
                 </div>}
                     {!recentDelete && <div><CommentsList loggedIn={this.props.loggedIn} username={this.props.username} id={this.props.id} /></div> }
             </div >
@@ -48,13 +47,6 @@ class Article extends Component {
     }
     handleDelete = () => {
         this.setState({recentDelete: true, article: ''})
-    }
-    removeItem = (id, article) => {
-        api.deleteItem(id, article)
-            .then(data => {
-                this.handleDelete()
-            })
-            .catch(console.dir)
     }
 };
 
