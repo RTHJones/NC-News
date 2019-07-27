@@ -14,7 +14,7 @@ class Users extends Component {
         limit: 5, 
         checked : false,
         totalCount: 0,
-        isLoading: false
+        isLoading: true
     }
     render() {
         const { users, page, limit, totalCount, isLoading } = this.state;
@@ -80,7 +80,7 @@ class Users extends Component {
             .catch(err => console.dir(err)) 
         api.fetchAuthors(sort_by, order, page, limit)
             .then(authors => {
-                this.setState({ users: authors})
+                this.setState({ isLoading: false, users: authors})
             })
             .catch(err => console.log(err))
     }
