@@ -86,6 +86,16 @@ class Articles extends Component {
         })
     }
     componentDidMount = () => {
+        // const promise1 = new Promise (function (resolve, reject) {api.fetchTopics()})
+        // const promise2 = new Promise (function (resolve, reject) {api.fetchAuthors()})
+        // const promise3 = new Promise ((resolve, reject) => this.setState({topic: this.props.location.state.topic || '', author: this.props.location.state.author || ''}))
+        // Promise.all([promise1, promise2, promise3])
+        //     .then((dataArray) => {
+        //         console.log(dataArray)
+        //     this.setState({topics: dataArray[0], authors: dataArray[1]})
+        //     })
+        //     .then(this.getArticles())
+        //     .catch(err => console.dir(err))
         api.fetchTopics()
             .then(topics => {
                 this.setState({ topics: topics })
@@ -96,7 +106,6 @@ class Articles extends Component {
                 this.setState({ authors: authors })
             })
             .catch(err => console.log(err))
-        this.setState({ isLoading: true })
         this.getArticles()
     }
     componentDidUpdate(prevProps, prevState) {
