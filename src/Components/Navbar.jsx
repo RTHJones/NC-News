@@ -10,9 +10,13 @@ class Navbar extends Component {
             <div className="navbar">
                 {!this.props.loggedIn && 
                 <Link to='/accounts'>
-                    <button className="logInButton">Log In</button>
+                    <button className="navButton">Log In</button>
                 </Link>}
-                {this.props.loggedIn && <>____logged in as: {this.props.username}____</>}
+                {this.props.loggedIn && <div>
+                <Link to="/articles" state={
+                    { author: this.props.username}}>
+                    <button className="navButton">Logged in as: {this.props.username}</button>
+                </Link></div>}
                 <Link to="/">
                     <button className="navButton">Home</button>
                 </Link>
