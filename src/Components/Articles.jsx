@@ -77,18 +77,6 @@ class Articles extends Component {
                     }
                 </div>
                 <Paginator showPaginator={true} limit={limit} page={page} totalCount={totalCount} handleChange={this.handleChange} changePage={this.changePage} prevState={this.prevState}/>
-                {/* <div className="pageBar">
-                    <button onClick={() => this.changePage(this.prevState, -1)} disabled={this.state.page === 1}>Previous Page</button>
-                    Page: {page}
-                    <button onClick={() => this.changePage(this.prevState, 1)} disabled={this.state.page >= this.state.totalCount / this.state.limit}>Next Page</button>
-                    <label>Articles per page
-                        <select value={this.state.limit} onChange={(event) => this.handleChange(event, 'limit')}>
-                            <option value="5">5</option>
-                            <option value="10">10</option>
-                            <option value="20">20</option>
-                        </select>
-                    </label>
-                </div> */}
             </div >
         );
     }
