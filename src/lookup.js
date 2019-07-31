@@ -3,6 +3,5 @@ export const topicUrls = {
 }
 export const userUrls = {
     default: 'https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png',
-    Sam: 'https://www.syfy.com/sites/syfy/files/styles/1200x680/public/cast_futurama_turangaleela_0.jpg',
 }
 
