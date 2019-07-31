@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Paginator = () => {
-    let {showPaginator, limit, page, totalCount, changePage, prevState, handleChange} = this.props;
+const Paginator = (props) => {
+    let {showPaginator, limit, page, totalCount, changePage, prevState, handleChange} = props;
     return (
         <div className="paginator">
             {showPaginator && <div className="pageBar">

@@ -17,7 +17,7 @@ class Articles extends Component {
         totalCount: 0,
         limit: 10,
         errorMsg: '',
-        isLoading: false
+        isLoading: true
     }
     render() {
         const { articles, topics, authors, page, limit, totalCount, errorMsg, isLoading } = this.state;
