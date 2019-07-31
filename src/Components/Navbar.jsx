@@ -8,7 +8,10 @@ class Navbar extends Component {
     render() {
         return (
             <div className="navbar">
-                {!this.props.loggedIn && <Link to='/accounts'><>{' '}User not logged in</></Link>}
+                {!this.props.loggedIn && 
+                <Link to='/accounts'>
+                    <button className="logInButton">Log In</button>
+                </Link>}
                 {this.props.loggedIn && <>____logged in as: {this.props.username}____</>}
                 <Link to="/">
                     <button className="navButton">Home</button>
@@ -33,7 +36,7 @@ class Navbar extends Component {
                     { topic: '' }}>
                     <button className="navButton" >Submit Article</button>
                 </Link>
-                <button onClick={() => this.props.logOut()}>Log Out</button>
+                {this.props.loggedIn && <button onClick={() => this.props.logOut()}>Log Out</button>}
             </div>
         );
     };
