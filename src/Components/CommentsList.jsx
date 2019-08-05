@@ -10,7 +10,6 @@ class CommentsList extends Component {
         comments: null,
         showComments: false,
         userComment: '',
-        loggedInUser: this.props.user,
         limit: 10,
         page : 1,
         sort_by: '',
