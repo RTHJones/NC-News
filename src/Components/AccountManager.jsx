@@ -20,6 +20,7 @@ class AccountManager extends Component {
             username, 
             name, 
             avatarUrl, 
+            newUser,
             searchedName, 
             userData, 
             userFound, 
@@ -27,10 +28,11 @@ class AccountManager extends Component {
         return (
             <div>
                 <h2>Account Manager</h2><br />
-                {!loggedInUser && <label>Enter Username to Log In:<input value={this.state.newUser} onChange={(event) => this.handleChange('newUser', event.target.value)} type="text" placeholder="username"></input><button onClick={(event) => {
-                    this.props.logIn(this.state.newUser)
+                {!loggedInUser && <form><label>Enter Username to Log In:<input value={newUser} onChange={(event) => this.handleChange('newUser', event.target.value)} type="text" placeholder="username"></input><button onClick={(event) => {
+                    event.preventDefault()
+                    this.props.logIn(newUser)
                     this.setState({ newUser: '' })
-                }}>Log In</button></label>} <br />
+                }}>Log In</button></label></form>} <br />
                 {this.props.invalidUser && <>The Username entered has not been found</>}
                 <br />
                 <br />
@@ -58,10 +60,14 @@ class AccountManager extends Component {
                 </Link>
                 <br />
                 <br />
+                <form>
                 Search Users By Username:
                 <input onChange={(event) => this.handleChange('searchedName', event.target.value)} value={searchedName} placeholder="username" type="text" name="searchterm"></input>
-                <button disabled={!searchedName} onClick={() => this.getDetails(searchedName)}>Search Now</button>
+                <button disabled={!searchedName} onClick={
+                    (event) => {event.preventDefault() 
+                    this.getDetails(searchedName)}}>Search Now</button>
                 <button onClick={this.handleReset}>Reset Search</button>
+                </form>
                 <div>
                 {notFoundMsg && <div>User Not Found</div>}
                 {userFound && <div className="userCard" >

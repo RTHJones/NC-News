@@ -17,7 +17,7 @@ class Articles extends Component {
         totalCount: 0,
         limit: 10,
         errorMsg: '',
-        isLoading: false
+        isLoading: true
     }
     render() {
         const { articles, topics, authors, page, limit, totalCount, errorMsg, isLoading } = this.state;
@@ -77,18 +77,6 @@ class Articles extends Component {
                     }
                 </div>
                 <Paginator showPaginator={true} limit={limit} page={page} totalCount={totalCount} handleChange={this.handleChange} changePage={this.changePage} prevState={this.prevState}/>
-                {/* <div className="pageBar">
-                    <button onClick={() => this.changePage(this.prevState, -1)} disabled={this.state.page === 1}>Previous Page</button>
-                    Page: {page}
-                    <button onClick={() => this.changePage(this.prevState, 1)} disabled={this.state.page >= this.state.totalCount / this.state.limit}>Next Page</button>
-                    <label>Articles per page
-                        <select value={this.state.limit} onChange={(event) => this.handleChange(event, 'limit')}>
-                            <option value="5">5</option>
-                            <option value="10">10</option>
-                            <option value="20">20</option>
-                        </select>
-                    </label>
-                </div> */}
             </div >
         );
     }
@@ -98,6 +86,16 @@ class Articles extends Component {
         })
     }
     componentDidMount = () => {
+        // const promise1 = new Promise (function (resolve, reject) {api.fetchTopics()})
+        // const promise2 = new Promise (function (resolve, reject) {api.fetchAuthors()})
+        // const promise3 = new Promise ((resolve, reject) => this.setState({topic: this.props.location.state.topic || '', author: this.props.location.state.author || ''}))
+        // Promise.all([promise1, promise2, promise3])
+        //     .then((dataArray) => {
+        //         console.log(dataArray)
+        //     this.setState({topics: dataArray[0], authors: dataArray[1]})
+        //     })
+        //     .then(this.getArticles())
+        //     .catch(err => console.dir(err))
         api.fetchTopics()
             .then(topics => {
                 this.setState({ topics: topics })
@@ -108,7 +106,6 @@ class Articles extends Component {
                 this.setState({ authors: authors })
             })
             .catch(err => console.log(err))
-        this.setState({ isLoading: true })
         this.getArticles()
     }
     componentDidUpdate(prevProps, prevState) {
@@ -133,6 +130,7 @@ class Articles extends Component {
                     this.setState({ articles: data.articles, totalCount: data.total_count, errorMsg: '', isLoading: false })
                 }
             })
+            .catch(err => console.log(err))
     }
     handleChange = (event, input) => {
         if (input === 'limit') {

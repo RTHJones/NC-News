@@ -15,7 +15,7 @@ If you would prefer to run the app from a local machine using an editor such as 
 5. Open the project in your preferred editor. For VS Code, type `code .` and press enter.
 6. Open a terminal in VS Code by holding ctrl and pressing 'j'
 7. Check if you have node.js or npm installed by typing and entering `node -v` and `npm -v` respectively.
-8. If node.js is not installed, go to your root directory then type and enter `sudo apt-get install nodejs` (from your Ubuntu user account with sudo privileges), or use the Windows installer at `nodejs.org` if using a Windows Operating System. 
+8. If node.js is not installed, it can be downloaded from: https://nodejs.org/en/download/
 9. NPM is installed automatically with node, but might be an outdated version. You can ensure that you have the latest version by typing and entering `npm install npm@latest -g`
 10. Once node and npm are installed and up to date, type and enter `npm install react`
 11. Type and enter `npm install @reach/router`

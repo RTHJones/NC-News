@@ -10,7 +10,6 @@ class CommentsList extends Component {
         comments: null,
         showComments: false,
         userComment: '',
-        loggedInUser: this.props.user,
         limit: 10,
         page : 1,
         sort_by: '',
@@ -57,18 +56,6 @@ class CommentsList extends Component {
                     }) : <div className="commentCard"> <h3>No comments found for article</h3></div>}
                 </div>}
                 <Paginator showPaginator={showComments} limit={limit} page={page} totalCount={totalCount} handleChange={this.handleChange} changePage={this.changePage} prevState={this.prevState}/>
-                {/* {showComments && <div className="pageBar">
-                    <button onClick={() => this.changePage(this.prevState, -1)} disabled={page === 1}>Previous Page</button>
-                    Page: {page}
-                    <button onClick={() => this.changePage(this.prevState, 1)} disabled={page >= totalCount / limit}>Next Page</button>
-                    <label>Comments per page
-                        <select value={this.state.limit} onChange={(event) => this.handleChange(event, 'limit')}>
-                            <option value="5">5</option>
-                            <option value="10">10</option>
-                            <option value="20">20</option>
-                        </select>
-                    </label>
-                </div>} */}
             </div>
         );
     }
