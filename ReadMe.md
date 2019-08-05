@@ -17,9 +17,7 @@ If you would prefer to run the app from a local machine using an editor such as 
 7. Check if you have node.js or npm installed by typing and entering `node -v` and `npm -v` respectively.
 8. If node.js is not installed, it can be downloaded from: https://nodejs.org/en/download/
 9. NPM is installed automatically with node, but might be an outdated version. You can ensure that you have the latest version by typing and entering `npm install npm@latest -g`
-10. Once node and npm are installed and up to date, type and enter `npm install react`
-11. Type and enter `npm install @reach/router`
-12. You should now be able to open the webapp in your browser by typing and entering `npm start` from the command line/terminal in the nc-news directory.
+10. You should now be able to open the webapp in your browser by typing and entering `npm start` from the command line/terminal in the nc-news directory.
 
 ## User Guide ##
 
