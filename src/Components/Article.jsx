@@ -44,6 +44,7 @@ class Article extends Component {
                 this.setState({ article: article, isLoading: false })
                 if (!article) navigate('/errorpage')
             })
+            .catch(err => console.log(err))
     }
     handleDelete = () => {
         this.setState({recentDelete: true, article: ''})

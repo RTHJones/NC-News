@@ -130,6 +130,7 @@ class Articles extends Component {
                     this.setState({ articles: data.articles, totalCount: data.total_count, errorMsg: '', isLoading: false })
                 }
             })
+            .catch(err => console.log(err))
     }
     handleChange = (event, input) => {
         if (input === 'limit') {
