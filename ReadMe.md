@@ -17,7 +17,8 @@ If you would prefer to run the app from a local machine using an editor such as 
 7. Check if you have node.js or npm installed by typing and entering `node -v` and `npm -v` respectively.
 8. If node.js is not installed, it can be downloaded from: https://nodejs.org/en/download/
 9. NPM is installed automatically with node, but might be an outdated version. You can ensure that you have the latest version by typing and entering `npm install npm@latest -g`
-10. You should now be able to open the webapp in your browser by typing and entering `npm start` from the command line/terminal in the nc-news directory.
+10. `npm install` should be typed and entered whether or not you wish to update the npm version. This ensures the required packages will be available.
+11. You should now be able to open the webapp in your browser by typing and entering `npm start` from the command line/terminal in the nc-news directory.
 
 ## User Guide ##
 
