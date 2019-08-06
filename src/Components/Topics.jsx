@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import * as api from '../api';
-import { Link } from '@reach/router';
+import { Link, navigate } from '@reach/router';
 import * as lookup from '../lookup';
 import * as utils from '../utils';
 
@@ -41,6 +41,7 @@ class Topics extends Component {
             .then(topics => {
                 this.setState({ topics: topics, isLoading: false })
             })
+            .catch(navigate('/errorpage', {state: { code: 500, msg: 'Something went wrong, sorry!'}}))
     }
 }
 export default Topics;

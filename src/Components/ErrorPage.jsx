@@ -22,7 +22,6 @@ class ErrorPage extends Component {
     }
     componentDidMount = () => {
         const {error, msg, message, code} = this.props.location.state
-        console.dir(error)
         this.setState({ err: error || null, message: message || msg || 'The requested resource can not be found. Please check url is typed correctly and all data fields have been completed.', code: code || 404})
     }
 }

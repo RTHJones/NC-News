@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as api from '../api';
+import {navigate} from '@reach/router';
 
 class Deleter extends Component {
     render() {
@@ -16,7 +17,7 @@ class Deleter extends Component {
                 .then(data => {
                 this.props.handleDelete()
                 })
-                .catch(console.dir)
+                .catch(navigate('/errorpage', {state: { code: 500, msg: 'Something went wrong, sorry!'}}))
     }
 }
 export default Deleter;

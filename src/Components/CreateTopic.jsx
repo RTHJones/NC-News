@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as api from '../api';
+import {navigate} from '@reach/router';
 
 class CreateTopic extends Component {
     state = {
@@ -45,7 +46,7 @@ class CreateTopic extends Component {
                 .then(data => {
                     this.setState({newTopicData: data, slug : '', description : '', imgURL : ''})
                 })
-                .catch(err => console.log(err))
+                .catch(navigate('/errorpage', {state: { code: 500, msg: 'Something went wrong, sorry!'}}))
     }
 }
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from '@reach/router';
+import { Link, navigate } from '@reach/router';
 import * as api from '../api';
 import * as lookup from '../lookup';
 
@@ -90,7 +90,7 @@ class AccountManager extends Component {
                     else {this.setState({searchedName : '', userData: '', userFound : false, notFoundMsg : true})}
                 }
             )
-            .catch(console.dir)
+            .catch(navigate('/errorpage', {state: { code: 500, msg: 'Something went wrong, sorry!'}}))
     }
     handleSubmit = (event) => {
         const { username, name, avatarUrl } = this.state;
@@ -100,7 +100,7 @@ class AccountManager extends Component {
                 this.setState({ name: '', username: '', avatarUrl: '' })
                 this.props.logIn(info.data["New User Created"].username)
             })
-            .catch(console.dir)
+            .catch(navigate('/errorpage', {state: { code: 500, msg: 'Something went wrong, sorry!'}}))
     }
     handleChange = (value, input) => {
         this.setState({ [value]: input })

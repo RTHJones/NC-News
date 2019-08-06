@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as api from '../api';
+import {navigate} from '@reach/router';
 
 class Voter extends Component {
     state = {
@@ -21,7 +22,7 @@ class Voter extends Component {
         api.vote(id, increment, comment)
             .then(res => {
             })
-            .catch(err => console.log(err))
+            .catch(navigate('/errorpage', {state: { code: 500, msg: 'Something went wrong, sorry!'}}))
     }
 }
 

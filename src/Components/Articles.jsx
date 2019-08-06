@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import * as api from '../api'
-import { Link } from '@reach/router';
+import { Link, navigate} from '@reach/router';
 import moment from 'moment';
 import Paginator from './Paginator';
 
@@ -91,7 +91,7 @@ class Articles extends Component {
                 this.setState({topics: dataArray[0], authors: dataArray[1], topic: this.props.location.state.topic || '', author: this.props.location.state.author || ''})
             })
             .then(this.getArticles())
-            .catch(err => console.dir(err))
+            .catch(navigate('/errorpage', {state: { code: 500, msg: 'Something went wrong, sorry!'}}))
     }
     componentDidUpdate(prevProps, prevState) {
         const { author, topic, sort_by, checked, page, limit } = this.state;
@@ -115,7 +115,7 @@ class Articles extends Component {
                     this.setState({ articles: data.articles, totalCount: data.total_count, errorMsg: '', isLoading: false })
                 }
             })
-            .catch(err => console.log(err))
+            .catch(navigate('/errorpage', {state: { code: 500, msg: 'Something went wrong, sorry!'}}))
     }
     handleChange = (event, input) => {
         if (input === 'limit') {

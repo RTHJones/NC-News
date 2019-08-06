@@ -4,6 +4,7 @@ import Voter from './Voter';
 import moment from 'moment';
 import Deleter from './Deleter';
 import Paginator from './Paginator';
+import {navigate} from '@reach/router';
 
 class CommentsList extends Component {
     state = {
@@ -88,12 +89,12 @@ class CommentsList extends Component {
                     totalCount: comments.length || 0
                 })}
             })
-            .catch(err => console.log(err));
+            .catch(navigate('/errorpage', {state: { code: 500, msg: 'Something went wrong, sorry!'}}));
         api.fetchComments(id, limit, page, sort_by, order)
             .then(comments => {
                 if(comments) this.setState({comments})
             })
-            .catch(err => console.log(err))
+            .catch(navigate('/errorpage', {state: { code: 500, msg: 'Something went wrong, sorry!'}}))
     }
     handleChange = (event, input) => {
         if (input === 'limit') {
