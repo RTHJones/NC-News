@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 
 class ErrorPage extends Component {
     state = {
-        err: this.props.err || null,
-        message: this.props.message || 'The requested resource can not be found. Please check url is typed correctly and all data fields have been completed.',
-        code: this.props.code || 404
+        err: null,
+        message: 'The requested resource can not be found. Please check url is typed correctly and all data fields have been completed.',
+        code:  404
     }
     render() {
         const { message, code } = this.state;
@@ -21,9 +21,9 @@ class ErrorPage extends Component {
         );
     }
     componentDidMount = () => {
-        const error = this.props.err;
+        const {error, msg, message, code} = this.props.location.state
         console.dir(error)
-        this.setState({ err: error || null })
+        this.setState({ err: error || null, message: message || msg || 'The requested resource can not be found. Please check url is typed correctly and all data fields have been completed.', code: code || 404})
     }
 }
 

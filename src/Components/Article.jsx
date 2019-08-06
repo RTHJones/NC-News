@@ -42,7 +42,7 @@ class Article extends Component {
         api.fetchSingleArticle(id)
             .then(article => {
                 this.setState({ article: article, isLoading: false })
-                if (!article) navigate('/errorpage')
+                if (!article) navigate('/errorpage', {state: { code: 400, msg: `article number ${id} does not exist`}} )
             })
             .catch(err => console.log(err))
     }
