@@ -91,7 +91,7 @@ class Users extends Component {
         this.setState({ [input]: event.target.value })
     }
     handleCheck = () => {
-        this.setState({ checked: (this.PrevState.checked ? false : true) })
+        this.setState({ checked: (this.state.checked ? false : true) })
     }
 }
 

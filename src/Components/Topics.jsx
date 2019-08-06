@@ -27,6 +27,7 @@ class Topics extends Component {
                                 <p></p>
                                 <h3 >{utils.capitaliseFirstLetter(topic.slug)} </h3><br />
                                 {topic.description}
+                                <br/>
                                 <div><img className="topicImg" alt="topic related img" src={topic.imgURL|| lookup.topicUrls.default} /></div>
                                 <p></p><p></p>
                             </div>

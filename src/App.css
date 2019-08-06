@@ -221,6 +221,7 @@ h3 {
 .topicImg {
   max-width: 200px;
   max-height: auto;
+  margin-top: 20px;
 }
 .topicForm {
   display: flex;
