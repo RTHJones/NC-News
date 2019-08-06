@@ -32,7 +32,7 @@ class CommentsList extends Component {
                     <img className="speechBubble" alt="a speech bubble" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Comments_alt_font_awesome.svg/2000px-Comments_alt_font_awesome.svg.png" />
                     <p>Click to view comments</p>
                 </div>
-                {showComments && <div className="commentsBar"> Sort Comments By:
+                {showComments && <div className="userBar"> Sort Comments By:
                     <select onChange={(event) => this.handleChange(event, 'sort_by')} defaultValue={null}>
                         <option value="created_at">Age</option>
                         <option value="author">Author</option>
