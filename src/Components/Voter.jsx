@@ -22,7 +22,7 @@ class Voter extends Component {
         api.vote(id, increment, comment)
             .then(res => {
             })
-            .catch(err => console.log(err))
+            .catch(navigate('/errorpage', {state: { code: 500, msg: 'Something went wrong, sorry!'}}))
     }
 }
 

@@ -46,7 +46,7 @@ class CreateTopic extends Component {
                 .then(data => {
                     this.setState({newTopicData: data, slug : '', description : '', imgURL : ''})
                 })
-                .catch(err => console.log(err))
+                .catch(navigate('/errorpage', {state: { code: 500, msg: 'Something went wrong, sorry!'}}))
     }
 }
 

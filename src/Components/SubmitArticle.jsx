@@ -46,7 +46,7 @@ class SubmitArticle extends Component {
             .then(topics => {
                 this.setState({ topics: topics })
             })
-            .catch(err => console.log(err))
+            .catch(navigate('/errorpage', {state: { code: 500, msg: 'Something went wrong, sorry!'}}))
     }
     handleChange = (event, input) => {
         this.setState({ [input]: event.target.value })

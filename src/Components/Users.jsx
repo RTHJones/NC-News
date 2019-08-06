@@ -82,7 +82,7 @@ class Users extends Component {
             .then(authors => {
                 this.setState({ isLoading: false, users: authors})
             })
-            .catch(err => console.log(err))
+            .catch(navigate('/errorpage', {state: { code: 500, msg: 'Something went wrong, sorry!'}}))
     }
     handleChange = (event, input) => {
         if (input === 'limit') {

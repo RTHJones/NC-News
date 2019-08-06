@@ -47,7 +47,7 @@ export const fetchArticles = (topic, author, sort_by, order, page, limit) => {
             .then(({ data }) => {
                 return data
             })
-            .catch(err => console.log(err))
+            .catch(navigate('/errorpage', {state: { code: 500, msg: 'Something went wrong, sorry!'}}))
     )
 }
 export const fetchAuthors = (sort_by, order, page, limit) => {
@@ -64,7 +64,7 @@ export const fetchAuthors = (sort_by, order, page, limit) => {
             .then(({ data }) => {
                 return data.users
             })
-            .catch(err => console.log(err))
+            .catch(navigate('/errorpage', {state: { code: 500, msg: 'Something went wrong, sorry!'}}))
     )
 }
 export const fetchComments = (id, limit, page, sort_by, order) => {
@@ -109,7 +109,7 @@ export const fetchTopics = () => {
             .then(({ data }) => {
                 return data.topics
             })
-            .catch(err => console.log(err))
+            .catch(navigate('/errorpage', {state: { code: 500, msg: 'Something went wrong, sorry!'}}))
     )
 }
 export const postArticle = (title, topic, username, body) => {
@@ -139,6 +139,6 @@ export const vote = (id, increment, comment) => {
             .then(({ data }) => {
                 return data
             })
-            .catch(err => console.log(err))
+            .catch(navigate('/errorpage', {state: { code: 500, msg: 'Something went wrong, sorry!'}}))
     )
 }
