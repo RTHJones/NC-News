@@ -27,7 +27,7 @@ class AccountManager extends Component {
             notFoundMsg } = this.state
         return (
             <div>
-                <h2>Account Manager</h2><br />
+                <h2>Account Manager</h2>
                 {!loggedInUser && <form><label>Enter Username to Log In:<input value={newUser} onChange={(event) => this.handleChange('newUser', event.target.value)} type="text" placeholder="username"></input><button onClick={(event) => {
                     event.preventDefault()
                     this.props.logIn(newUser)
@@ -36,22 +36,26 @@ class AccountManager extends Component {
                 {this.props.invalidUser && <>The Username entered has not been found</>}
                 <br />
                 <br />
-                <form className="userForm" display="block" > <h3>Create New User </h3><br />
+                <form className="userForm" display="block" > <h3 className="userField">Create New User </h3><br />
                     <label>
                         Username
-                    <input type="text" name="username" value={username} onChange={(event) => this.handleChange('username', event.target.value)} />
+                    <input className="userField" type="text" name="username" value={username} onChange={(event) => this.handleChange('username', event.target.value)} />
                     </label><br />
                     <label>
                         Name:
-                    <input type="text" name="name" value={name} onChange={(event) => this.handleChange('name', event.target.value)} />
+                    <input className="userField" type="text" name="name" value={name} onChange={(event) => this.handleChange('name', event.target.value)} />
                     </label><br />
                     <label>
                         Avatar URL:
-                    <input type="text" name="avatar" value={avatarUrl} onChange={(event) => this.handleChange('avatarUrl', event.target.value)} />
-                    </label><br />
+                    <input className="userField" type="text" name="avatar" value={avatarUrl} onChange={(event) => this.handleChange('avatarUrl', event.target.value)} />
+                    </label>
+                    <br />
                     <label>
-                        <input disabled={!username || !name} type="submit" value="Create User" onClick={this.handleSubmit} />
-                    </label><br />
+                        <br/>
+                        <input className="userButton" disabled={!username || !name} type="submit" value="Create User" onClick={this.handleSubmit} />
+                    <br/>
+                    </label>
+                    <br />
                 </form>
                 <br />
                 <br />
@@ -60,13 +64,16 @@ class AccountManager extends Component {
                 </Link>
                 <br />
                 <br />
-                <form>
-                Search Users By Username:
-                <input onChange={(event) => this.handleChange('searchedName', event.target.value)} value={searchedName} placeholder="username" type="text" name="searchterm"></input>
-                <button disabled={!searchedName} onClick={
+                <form className="userForm" >
+                <h3>Search Users By Username:</h3>
+                <input className="userField" onChange={(event) => this.handleChange('searchedName', event.target.value)} value={searchedName} placeholder="username" type="text" name="searchterm"></input>
+                <br/>
+                <button  disabled={!searchedName} onClick={
                     (event) => {event.preventDefault() 
                     this.getDetails(searchedName)}}>Search Now</button>
-                <button onClick={this.handleReset}>Reset Search</button>
+                    <br/>
+                <button  onClick={this.handleReset}>Reset Search</button>
+                <br/>
                 </form>
                 <div>
                 {notFoundMsg && <div>User Not Found</div>}

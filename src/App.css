@@ -159,10 +159,13 @@ h2 {
   -webkit-text-fill-color: transparent;
   text-decoration: none;
   margin-bottom: 0px;
+  padding-bottom: 0px;
+  padding-top: 0px;
+  margin-top: 15px;
 }
 h3 {
   margin-top: 10px;
-  margin-bottom: 0px;
+  margin-bottom: 10px;
   padding-bottom: 0px;
   font-size: 20px;
 }
@@ -228,14 +231,26 @@ h3 {
   border-style: solid;
   border-width: 1px 2px 1px 2px;
 }
+.userButton {
+  margin-bottom: 20px;
+  padding-bottom: 0px;
+}
 .userCard {
   border: solid grey;
   background-color: beige;
   border-width: 1px 2px 1px 2px;
 }
+.userField {
+  width: 90%;
+}
 .userForm {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  flex-shrink: 1;
   border: solid grey;
   background-color: beige;
+  align-items: center;
   border-width: 5px;
   border-radius: 20px;
   width: 50%;
