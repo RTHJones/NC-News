@@ -58,7 +58,7 @@ class SubmitArticle extends Component {
             .then(res => {
                 navigate(`/articles/${res['New Article Created'].article_id}`)
             })
-            .catch(console.dir)
+            .catch(err => console.log(err))
     }
 }
 

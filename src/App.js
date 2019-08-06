@@ -11,7 +11,7 @@ import CreateTopic from './Components/CreateTopic';
 import Users from './Components/Users';
 import ErrorPage from './Components/ErrorPage';
 import SubmitArticle from './Components/SubmitArticle';
-import { Router, Link } from '@reach/router';
+import { Router, Link, navigate } from '@reach/router';
 import * as api from './api';
 
 
@@ -55,7 +55,7 @@ class App extends Component {
           this.setState({ invalidUser: true, loggedIn: false })
         }
       })
-      .catch(console.dir)
+      .catch(navigate('/errorpage', {state: { code: 500, msg: 'Something went wrong, sorry!'}}))
   }
   logOut = () => {
     this.setState({ username: '', loggedIn: false })

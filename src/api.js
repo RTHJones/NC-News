@@ -1,4 +1,5 @@
-import axios from 'axios'
+import axios from 'axios';
+import {navigate} from '@reach/router';
 
 const request = axios.create({ baseURL: 'https://robins-nc-news.herokuapp.com/api' })
 
@@ -7,10 +8,9 @@ export const createTopic = (slug, description, imgURL) => {
         request
         .post('./topics', {slug, description, imgURL} )
         .then(data => {
-            console.log(data)
             return data
         })
-        .catch(console.dir)
+        .catch(err => console.log(err))
     )
 }
 export const createUser = (username, name, avatar_url) => {
@@ -18,7 +18,7 @@ export const createUser = (username, name, avatar_url) => {
         request
             .post('/users', { username, name, avatar_url })
             .then(data => data)
-            .catch(console.dir)
+            .catch(err => console.log(err))
     )
 }
 export const deleteItem = (id, article) => {
@@ -28,7 +28,7 @@ export const deleteItem = (id, article) => {
             .then(res => {
                 return { response: res, info: 'item deleted' }
             })
-            .catch(console.dir)
+            .catch(err => console.log(err))
     )
 }
 export const fetchArticles = (topic, author, sort_by, order, page, limit) => {
@@ -79,7 +79,7 @@ export const fetchComments = (id, limit, page, sort_by, order) => {
                 }
             })
             .then(({ data }) => {return data.comments})
-            .catch(err => console.dir(err))
+            .catch(err => console.log(err))
     )
 }
 export const fetchSingleArticle = (id) => {
@@ -89,7 +89,7 @@ export const fetchSingleArticle = (id) => {
             .then(({ data }) => {
                 return data.article
             })
-            .catch(err => console.dir(err))
+            .catch(err => console.log(err))
     )
 }
 export const fetchSingleUser = (username) => {
@@ -99,7 +99,7 @@ export const fetchSingleUser = (username) => {
             .then(({data}) => {
                 return data
             })
-            .catch(err => console.dir(err))
+            .catch(err => console.log(err))
     )
 }
 export const fetchTopics = () => {
@@ -119,7 +119,7 @@ export const postArticle = (title, topic, username, body) => {
             .then(({ data }) => {
                 return data
             })
-            .catch(console.dir)
+            .catch(err => console.log(err))
     )
 }
 export const postComment = (id, body, username) => {
@@ -129,7 +129,7 @@ export const postComment = (id, body, username) => {
             .then(({ data }) => {
                 return data
             })
-            .catch(console.dir)
+            .catch(err => console.log(err))
     )
 }
 export const vote = (id, increment, comment) => {

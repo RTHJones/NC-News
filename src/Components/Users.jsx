@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import * as api from '../api';
-import { Link } from '@reach/router';
+import { Link, navigate } from '@reach/router';
 import * as lookup from '../lookup';
 import Paginator from './Paginator';
 
@@ -77,7 +77,7 @@ class Users extends Component {
             .then(authors => {
                 this.setState({totalCount: authors.length})
             })
-            .catch(err => console.dir(err)) 
+            .catch(err => console.log(err))
         api.fetchAuthors(sort_by, order, page, limit)
             .then(authors => {
                 this.setState({ isLoading: false, users: authors})
