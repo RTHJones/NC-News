@@ -57,14 +57,21 @@
   background-color: beige;
 }
 .articleForm {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 1;
+  align-items: center;
   border: grey 5px solid;
   border-radius: 10px;
-  width: 50%;
-  margin-left:25%;
+  width: 60%;
+  margin-left:20%;
 }
 .articleFormComponent {
-  padding: 5px;
-  margin: 10px;
+  padding: 3px;
+  margin: 5px;
+  flex-shrink: 1;
+  flex-grow: 1;
+  width: 70%;
 }
 .articleTile {
   border: solid grey;

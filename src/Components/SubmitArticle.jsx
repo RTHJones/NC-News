@@ -17,11 +17,14 @@ class SubmitArticle extends Component {
                 <h2>Article Submission Form</h2>
                 <label> {this.props.loggedIn ? <>You are logged in as: "{this.state.username}"</> : <div className='submissionWarning'>You must log in to submit an article!</div>}
                     <form className='articleForm' onSubmit={this.handleSubmit}>
-                        <label>
-                            Title:
-                    <input className='articleFormComponent' onChange={(event) => this.handleChange(event, 'title')} type="text" name="title" placeholder="Article Title" />
-                        </label><br />
-                        <label>Topic Selection:
+                        <label className='articleFormComponent'>
+                            Title:      
+                        </label> 
+                        <input className='articleFormComponent' onChange={(event) => this.handleChange(event, 'title')} type="text" name="title" placeholder="Article Title" />
+                 
+                        <label className='articleFormComponent'>
+                            Topic Selection:
+                        </label>
                         <select className='articleFormComponent' onChange={(event) => {
                                 this.handleChange(event, 'topic')
                             }} defaultValue={''}>
@@ -30,10 +33,10 @@ class SubmitArticle extends Component {
                                     return <option key={topic.slug} value={topic.slug} name={topic.slug}>{topic.slug.charAt(0).toUpperCase() + topic.slug.slice(1)} </option>
                                 })}
                             </select>
-                        </label>
+                        
                         <br />
                         <label>
-                            <textarea rows="10" cols="60" className='articleFormComponent' onChange={(event) => this.handleChange(event, 'body')} name="body" placeholder="Write your article here!" />
+                            <textarea rows="10" cols="300" className='articleFormComponent' onChange={(event) => this.handleChange(event, 'body')} name="body" placeholder="Write your article here!" />
                         </label><br />
                         <button className='articleFormComponent' disabled={!(title && topic && username && body)} onClick={this.handleSubmit}>Create Your Article</button>
                     </form>
