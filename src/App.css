@@ -158,8 +158,8 @@ h2 {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-decoration: none;
-  margin-bottom: 0px;
-  padding-bottom: 0px;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
   padding-top: 0px;
   margin-top: 15px;
 }
@@ -216,14 +216,20 @@ h3 {
   max-height: auto;
 }
 .topicForm {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 1;
+  align-items: center;
   border: grey 5px solid;
   border-radius: 10px;
   width: 50%;
   margin-left:25%;
 }
 .topicFormComponent {
-  padding: 5px;
+  padding: 0px;
   margin: 10px;
+  width: 70%;
+  display: center;
 }
 .userBar {
   background-color: #a49480;

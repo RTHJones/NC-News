@@ -15,19 +15,23 @@ class CreateTopic extends Component {
             <div>
                 <h2>Topic Creation Form</h2>
                 <label> {this.props.loggedIn ? <>You are logged in as: "{username}"</> : <div className='submissionWarning'>You must log in to create a topic!</div>}
+                    <br/>
                     <form className='topicForm' onSubmit={this.handleSubmit}>
-                        <label>
+                        <label className='topicFormComponent'>
                             Topic:
+                            </label><br />
                             <input className='topicFormComponent' onChange={(event) => this.handleChange(event, 'slug')} type="text" value={slug} name="topic" placeholder="name your new topic" />
-                        </label><br />
-                        <label>
+                       
+                        <label className='topicFormComponent'>
                             Description:
+                            </label><br />
                             <input className='topicFormComponent' onChange={(event) => this.handleChange(event, 'description')} type="text" value={description} name="description" placeholder="describe this topic" />
-                        </label><br />
-                        <label>
+                      
+                        <label className='topicFormComponent'>
                             Image URL:
+                            </label><br />
                             <input className='topicFormComponent' onChange={(event) => this.handleChange(event, 'imgURL')} type="text" value={imgURL} name="imageURL" placeholder="enter the URL for your chosen image" />
-                        </label><br />
+                        
                         <button className='topicFormComponent' disabled={!(slug && description && this.props.loggedIn)} onClick={this.handleSubmit}>Create New Topic</button>
 
                     </form>
