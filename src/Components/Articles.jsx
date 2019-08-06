@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import * as api from '../api'
-import { Link, navigate} from '@reach/router';
+import { Link} from '@reach/router';
 import moment from 'moment';
 import Paginator from './Paginator';
 

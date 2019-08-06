@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, navigate } from '@reach/router';
+import { Link} from '@reach/router';
 import * as api from '../api';
 import * as lookup from '../lookup';
 
